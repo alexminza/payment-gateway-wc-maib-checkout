@@ -31,7 +31,7 @@ const maib_checkout_label = () => {
 const maib_checkout_blockGateway = {
     name: maib_checkout_settings.id,
     label: window.wp.element.createElement(maib_checkout_label, null),
-    icons: [{id: 'maib_checkout', alt: maib_checkout_settings.title, src: maib_checkout_settings.icon}],
+    icons: [{id: 'maib_checkout', alt: maib_checkout_title, src: maib_checkout_settings.icon}],
     content: window.wp.element.createElement(maib_checkout_content, null),
     edit: window.wp.element.createElement(maib_checkout_content, null),
     canMakePayment: () => true,
