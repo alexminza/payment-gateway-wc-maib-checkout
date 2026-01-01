@@ -431,49 +431,53 @@ function maib_checkout_init()
          */
         private function maib_checkout_register(MaibCheckoutClient $client, string $auth_token, \WC_Order $order)
         {
-            $redirect_url = $this->get_redirect_url($order);
+            $shipping_total  = floatval($order->get_shipping_total());
+            $shipping_tax    = floatval($order->get_shipping_tax());
+            $delivery_amount = wc_format_decimal($shipping_total + $shipping_tax, 2);
+
+            $order_total    = $order->get_total();
+            $order_amount   = wc_format_decimal(floatval($order_total) - floatval($delivery_amount), 2);
+            $order_currency = $order->get_currency();
+
+            $order_items = array();
+            foreach ($order->get_items() as $item) {
+                $product       = $item->get_product();
+                $line_total    = $order->get_line_total($item, true, true);
+                $line_quantity = $item->get_quantity();
+
+                $order_items[] = array(
+                    'externalId' => strval($product->get_id()),
+                    'title'      => $item->get_name(),
+                    'amount'     => wc_format_decimal($line_total / $line_quantity, 2),
+                    'currency'   => $order_currency,
+                    'quantity'   => $line_quantity,
+                );
+            }
 
             $checkout_data = array(
-                'amount' => $order->get_total(),
-                'currency' => $order->get_currency(),
+                'amount'    => $order_total,
+                'currency'  => $order_currency,
                 'orderInfo' => array(
-                    'id' => $order->get_id(),
-                    'description' => $this->get_order_description($order),
-                    'date' => '2025-11-03T09:28:40.814748+00:00',
-                    'orderAmount' => null,
-                    'orderCurrency' => null,
-                    'deliveryAmount' => null,
-                    'deliveryCurrency' => null,
-                    'items' => array(
-                        array(
-                            'externalId' => '243345345',
-                            'title' => 'Product1',
-                            'amount' => 50.61,
-                            'currency' => 'MDL',
-                            'quantity' => 3,
-                            'displayOrder' => null,
-                        ),
-                        array(
-                            'externalId' => '54353453',
-                            'title' => 'Product2',
-                            'amount' => 50.61,
-                            'currency' => 'MDL',
-                            'quantity' => 2,
-                            'displayOrder' => null,
-                        ),
-                    ),
+                    'id'               => strval($order->get_id()),
+                    'description'      => $this->get_order_description($order),
+                    'date'             => $order->get_date_created()->format('c'),
+                    'orderAmount'      => $order_amount,
+                    'orderCurrency'    => $order_currency,
+                    'deliveryAmount'   => $delivery_amount,
+                    'deliveryCurrency' => $order_currency,
+                    'items'            => $order_items,
                 ),
                 'payerInfo' => array(
-                    'name' => $order->get_formatted_billing_full_name(),
-                    'email' => $order->get_billing_email(),
-                    'phone' => $order->get_billing_phone(),
-                    'ip' => WC_Geolocation::get_ip_address(),
-                    'userAgent' => 'Mozilla/5.0',
+                    'name'      => $order->get_formatted_billing_full_name(),
+                    'email'     => $order->get_billing_email(),
+                    'phone'     => $order->get_billing_phone(),
+                    'ip'        => WC_Geolocation::get_ip_address(),
+                    'userAgent' => $order->get_customer_user_agent(),
                 ),
-                'language' => substr(get_user_locale(), 0, 2),
+                'language'    => substr(get_user_locale(), 0, 2),
                 'callbackUrl' => $this->maib_checkout_callback_url,
-                'successUrl' => $redirect_url,
-                'failUrl' => $redirect_url, //TODO
+                'successUrl'  => $this->get_redirect_url($order),
+                'failUrl'     => $order->get_cancel_order_url(), // $order->get_checkout_payment_url()
             );
 
             return $client->checkoutRegister($checkout_data, $auth_token);
