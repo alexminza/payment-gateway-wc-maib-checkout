@@ -59,8 +59,15 @@ function maib_checkout_init()
         const MOD_PAYMENT_ID      = self::MOD_PREFIX . 'payment_id';
         const MOD_PAYMENT_RECEIPT = self::MOD_PREFIX . 'payment_receipt';
 
-        const DEFAULT_TIMEOUT  = 30; // seconds
-        const DEFAULT_VALIDITY = 60; // minutes
+        /**
+         * Default API request timeout (seconds).
+         */
+        const DEFAULT_TIMEOUT = 30;
+
+        /**
+         * Default transaction validity (minutes).
+         */
+        const DEFAULT_VALIDITY = 60;
         //endregion
 
         protected $testmode, $debug, $logger, $order_template;
@@ -93,7 +100,7 @@ function maib_checkout_init()
 
             $this->order_template       = $this->get_option('order_template', self::ORDER_TEMPLATE);
 
-            // https://github.com/alexminza/maib-mia-sdk-php/blob/main/src/MaibMia/MaibMiaClient.php
+            // https://github.com/alexminza/maib-checkout-sdk-php/blob/main/src/MaibCheckout/MaibCheckoutClient.php
             $this->maib_checkout_base_url      = $this->testmode ? MaibCheckoutClient::SANDBOX_BASE_URL : MaibCheckoutClient::DEFAULT_BASE_URL;
             $this->maib_checkout_callback_url  = $this->get_option('maib_checkout_callback_url', $this->get_callback_url());
             $this->maib_checkout_client_id     = $this->get_option('maib_checkout_client_id');
@@ -502,7 +509,7 @@ function maib_checkout_init()
         }
 
         /**
-         * @link https://docs.maibmerchants.md/mia-qr-api/en/endpoints/information-retrieval-get/retrieve-list-of-payments-with-filtering-options
+         * @link https://docs.maibmerchants.md/checkout/api-reference/endpoints/retrieve-all-checkouts
          */
         private function maib_checkout_payment(MaibCheckoutClient $client, string $auth_token, string $checkout_id)
         {
@@ -510,14 +517,14 @@ function maib_checkout_init()
         }
 
         /**
-         * @link https://docs.maibmerchants.md/mia-qr-api/en/endpoints/payment-refund/refund-completed-payment
+         * @link https://docs.maibmerchants.md/checkout/api-reference/endpoints/refund-a-payment
          */
-        private function maib_payment_refund(MaibCheckoutClient $client, string $auth_token, string $payment_id, float $amount, string $reason, string $callback_url = null)
+        private function maib_payment_refund(MaibCheckoutClient $client, string $auth_token, string $payment_id, float $amount, string $reason)
         {
             $refund_data = array(
                 'amount' => $amount,
                 'reason' => $reason,
-                'callbackUrl' => $callback_url,
+                'callbackUrl' => $this->maib_checkout_callback_url,
             );
 
             return $client->paymentRefund($payment_id, $refund_data, $auth_token);
@@ -653,6 +660,21 @@ function maib_checkout_init()
             $validation_result = false;
 
             try {
+                // Validate signature headers
+                $signature_header = isset($_SERVER['HTTP_X_SIGNATURE']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_X_SIGNATURE'])) : '';
+                $signature_timestamp = isset($_SERVER['HTTP_X_SIGNATURE_TIMESTAMP']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_X_SIGNATURE_TIMESTAMP'])) : '';
+                if (empty($signature_header) || empty($signature_timestamp)) {
+                    throw new Exception('Empty signature/timestamp');
+                }
+
+                // Validate timestamp
+                $current_timestamp = time() * 1000;
+                $signature_timestamp_int = intval($signature_timestamp);
+                $timestamp_difference = abs($current_timestamp - $signature_timestamp_int);
+                if ($current_timestamp < $signature_timestamp_int || $timestamp_difference > self::DEFAULT_VALIDITY * 60) {
+                    throw new Exception('Timestamp difference');
+                }
+
                 $callback_body = wc_clean(file_get_contents('php://input'));
                 if (empty($callback_body)) {
                     throw new Exception('Empty callback body');
@@ -667,7 +689,7 @@ function maib_checkout_init()
                     throw new Exception('Invalid callback data');
                 }
 
-                $validation_result = MaibMiaClient::validateCallbackSignature($callback_data, $this->maib_checkout_signature_key);
+                $validation_result = MaibCheckoutClient::validateCallbackSignature($callback_body, $signature_header, $signature_timestamp, $this->maib_checkout_signature_key);
                 $this->log(
                     sprintf(__('Payment notification callback', 'payment-gateway-wc-maib-checkout')),
                     WC_Log_Levels::DEBUG,
@@ -707,10 +729,10 @@ function maib_checkout_init()
             }
             //endregion
 
-            //region Validate QR status
+            //region Validate payment status
             $callback_data_result = (array) $callback_data['result'];
-            $callback_qr_status = strval($callback_data_result['qrStatus']);
-            if (strtolower($callback_qr_status) !== 'paid') {
+            $callback_payment_status = strval($callback_data_result['paymentStatus']);
+            if (strtolower($callback_payment_status) !== 'executed') {
                 return self::return_response(WP_Http::ACCEPTED);
             }
             //endregion
@@ -851,18 +873,18 @@ function maib_checkout_init()
             //endregion
 
             //region Complete order payment
-            $payment_data_pay_id = strval($payment_data['payId']);
-            $payment_data_reference_id = strval($payment_data['referenceId']);
+            $payment_data_payment_id = strval($payment_data['paymentId']);
+            $payment_data_reference = strval($payment_data['retrievalReferenceNumber']);
 
             $order->add_meta_data(self::MOD_PAYMENT_RECEIPT, wp_json_encode($payment_receipt_data), true);
-            $order->add_meta_data(self::MOD_PAYMENT_ID, $payment_data_pay_id, true);
+            $order->add_meta_data(self::MOD_PAYMENT_ID, $payment_data_payment_id, true);
             $order->save();
 
-            $order->payment_complete($payment_data_reference_id);
+            $order->payment_complete($payment_data_reference);
             //endregion
 
             /* translators: 1: Order ID, 2: Payment method title, 3: Payment data */
-            $message = esc_html(sprintf(__('Order #%1$s payment completed via %2$s: %3$s', 'payment-gateway-wc-maib-checkout'), $order_id, $this->get_method_title(), $payment_data_reference_id));
+            $message = esc_html(sprintf(__('Order #%1$s payment completed via %2$s: %3$s', 'payment-gateway-wc-maib-checkout'), $order_id, $this->get_method_title(), $payment_data_reference));
             $message = $this->get_test_message($message);
             $this->log(
                 $message,
@@ -890,12 +912,12 @@ function maib_checkout_init()
 
             $order = wc_get_order($order_id);
             $order_currency = $order->get_currency();
-            $pay_id = strval($order->get_meta(self::MOD_PAYMENT_ID, true));
+            $payment_id = strval($order->get_meta(self::MOD_PAYMENT_ID, true));
 
-            if (empty($pay_id)) {
+            if (empty($payment_id)) {
                 /* translators: 1: Order ID, 2: Meta field key */
                 $message = esc_html(sprintf(__('Order #%1$s missing meta field %2$s.', 'payment-gateway-wc-maib-checkout'), $order_id, self::MOD_PAYMENT_ID));
-                return new WP_Error('order_pay_id', $message);
+                return new WP_Error('order_payment_id', $message);
             }
 
             $payment_refund_response = null;
@@ -903,14 +925,7 @@ function maib_checkout_init()
                 $client = $this->init_maib_checkout_client();
                 $auth_token = $this->maib_checkout_generate_token($client);
 
-                $payment_refund_response = $this->maib_mia_qr_refund(
-                    $client,
-                    $auth_token,
-                    $pay_id,
-                    $amount,
-                    $reason,
-                    $this->maib_checkout_callback_url
-                );
+                $payment_refund_response = $this->maib_payment_refund($client, $auth_token, $payment_id, $amount, $reason);
             } catch (Exception $ex) {
                 $this->log(
                     $ex->getMessage(),
@@ -976,7 +991,7 @@ function maib_checkout_init()
         protected function get_order_description(\WC_Order $order)
         {
             $description = sprintf($this->order_template, $order->get_id());
-            return apply_filters('maib_mia_order_description', $description, $order);
+            return apply_filters('maib_checkout_order_description', $description, $order);
         }
 
         protected function get_test_message(string $message)
@@ -992,7 +1007,7 @@ function maib_checkout_init()
         protected function get_redirect_url(\WC_Order $order)
         {
             $redirect_url = $this->get_return_url($order);
-            return apply_filters('maib_mia_redirect_url', $redirect_url, $order);
+            return apply_filters('maib_checkout_redirect_url', $redirect_url, $order);
         }
 
         protected function get_callback_url()
@@ -1103,14 +1118,14 @@ function maib_checkout_init()
     }
 
     //region Init payment gateway
-    add_filter('woocommerce_payment_gateways', array(WC_Gateway_MAIB_MIA::class, 'add_gateway'));
+    add_filter('woocommerce_payment_gateways', array(WC_Gateway_MAIB_Checkout::class, 'add_gateway'));
 
     if (is_admin()) {
-        add_filter('plugin_action_links_' . plugin_basename(__FILE__), array(WC_Gateway_MAIB_MIA::class, 'plugin_action_links'));
+        add_filter('plugin_action_links_' . plugin_basename(__FILE__), array(WC_Gateway_MAIB_Checkout::class, 'plugin_action_links'));
 
         //Add WooCommerce order actions
-        add_filter('woocommerce_order_actions', array(WC_Gateway_MAIB_MIA::class, 'order_actions'), 10, 2);
-        add_action('woocommerce_order_action_' . WC_Gateway_MAIB_MIA::MOD_ACTION_CHECK_PAYMENT, array(WC_Gateway_MAIB_MIA::class, 'action_check_payment'));
+        add_filter('woocommerce_order_actions', array(WC_Gateway_MAIB_Checkout::class, 'order_actions'), 10, 2);
+        add_action('woocommerce_order_action_' . WC_Gateway_MAIB_Checkout::MOD_ACTION_CHECK_PAYMENT, array(WC_Gateway_MAIB_Checkout::class, 'action_check_payment'));
     }
     //endregion
 }
@@ -1142,7 +1157,7 @@ add_action(
             add_action(
                 'woocommerce_blocks_payment_method_type_registration',
                 function (\Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry) {
-                    $payment_method_registry->register(new WC_Gateway_MAIB_MIA_WBC());
+                    $payment_method_registry->register(new WC_Gateway_MAIB_Checkout_WBC());
                 }
             );
         }
