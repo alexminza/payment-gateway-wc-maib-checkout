@@ -1,0 +1,45 @@
+{
+    "name": "alexminza/payment-gateway-wc-maib-checkout",
+    "description": "Payment Gateway for maib e-Commerce Checkout for WooCommerce",
+    "type": "wordpress-plugin",
+    "keywords": [
+        "WooCommerce",
+        "maib",
+        "e-commerce",
+        "checkout",
+        "bank",
+        "payment",
+        "gateway"
+    ],
+    "homepage": "https://github.com/alexminza/payment-gateway-wc-maib-checkout",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Alexander Minza",
+            "homepage": "https://www.alexminza.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/alexminza/payment-gateway-wc-maib-checkout/issues",
+        "forum": "https://wordpress.org/support/plugin/payment-gateway-wc-maib-checkout",
+        "source": "https://github.com/alexminza/payment-gateway-wc-maib-checkout"
+    },
+    "require": {
+        "php": ">=7.2.5",
+        "alexminza/maib-checkout-sdk": "*",
+        "monolog/monolog": "^2.7"
+    },
+    "config": {
+        "platform": {
+            "php": "7.2.5"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "prefer-stable": true,
+    "require-dev": {
+        "woocommerce/woocommerce-sniffs": "^1.0"
+    }
+}

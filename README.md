@@ -1,2 +1,1 @@
-# payment-gateway-wc-maib-checkout
-Payment Gateway for maib Checkout for WooCommerce
+# Payment Gateway for maib e-Commerce Checkout for WooCommerce
