@@ -684,26 +684,13 @@ function maib_checkout_init()
             }
 
             //region Validate callback
+            $signature_header = null;
+            $signature_timestamp = null;
             $callback_body = null;
             $callback_data = null;
             $validation_result = false;
 
             try {
-                // Validate signature headers
-                $signature_header = isset($_SERVER['HTTP_X_SIGNATURE']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_X_SIGNATURE'])) : '';
-                $signature_timestamp = isset($_SERVER['HTTP_X_SIGNATURE_TIMESTAMP']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_X_SIGNATURE_TIMESTAMP'])) : '';
-                if (empty($signature_header) || empty($signature_timestamp)) {
-                    throw new Exception('Empty signature/timestamp');
-                }
-
-                // Validate timestamp
-                $current_timestamp = time() * 1000;
-                $signature_timestamp_int = intval($signature_timestamp);
-                $timestamp_difference = abs($current_timestamp - $signature_timestamp_int);
-                if ($current_timestamp < $signature_timestamp_int || $timestamp_difference > self::DEFAULT_VALIDITY * 60) {
-                    throw new Exception('Timestamp difference');
-                }
-
                 $callback_body = wc_clean(file_get_contents('php://input'));
                 if (empty($callback_body)) {
                     throw new Exception('Empty callback body');
@@ -716,6 +703,13 @@ function maib_checkout_init()
                 }
                 if (empty($callback_data) || !is_array($callback_data)) {
                     throw new Exception('Invalid callback data');
+                }
+
+                // Validate signature headers
+                $signature_header = isset($_SERVER['HTTP_X_SIGNATURE']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_X_SIGNATURE'])) : '';
+                $signature_timestamp = isset($_SERVER['HTTP_X_SIGNATURE_TIMESTAMP']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_X_SIGNATURE_TIMESTAMP'])) : '';
+                if (empty($signature_header) || empty($signature_timestamp)) {
+                    throw new Exception('Empty signature/timestamp headers');
                 }
 
                 $validation_result = MaibCheckoutClient::validateCallbackSignature($callback_body, $signature_header, $signature_timestamp, $this->maib_checkout_signature_key);
@@ -733,6 +727,8 @@ function maib_checkout_init()
                     $ex->getMessage(),
                     WC_Log_Levels::ERROR,
                     array(
+                        'signature_header' => $signature_header,
+                        'signature_timestamp' => $signature_timestamp,
                         'callback_body' => $callback_body,
                         'callback_data' => $callback_data,
                         'exception' => (string) $ex,

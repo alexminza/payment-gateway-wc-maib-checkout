@@ -8,7 +8,7 @@ Requires PHP: 7.2.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Accept Visa, Mastercard, Apple Pay, Google Pay, MIA Instant Payments directly on your store with the maib e-Commerce Checkout payment gateway for WooCommerce.
+Accept Visa, Mastercard, Apple Pay, Google Pay, MIA Instant Payments directly on your store with the maib e-Commerce Checkout payment gateway.
 
 == Description ==
 
