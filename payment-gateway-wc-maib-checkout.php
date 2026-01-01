@@ -426,7 +426,7 @@ function maib_checkout_init()
         }
 
         /**
-         * @link https://github.com/alexminza/maib-checkout-sdk-php/blob/main/README.md#create-a-dynamic-order-payment-qr
+         * @link https://github.com/alexminza/maib-checkout-sdk-php/blob/main/README.md#register-a-new-hosted-checkout-session
          * @link https://docs.maibmerchants.md/checkout/api-reference/endpoints/register-a-new-hosted-checkout-session
          */
         private function maib_checkout_register(MaibCheckoutClient $client, string $auth_token, \WC_Order $order)
@@ -578,7 +578,7 @@ function maib_checkout_init()
                     $checkout_id = strval($order->get_meta(self::MOD_CHECKOUT_ID, true));
                     $checkout_url = strval($order->get_meta(self::MOD_CHECKOUT_URL, true));
 
-                    if (!empty($qr_id) && !empty($qr_url)) {
+                    if (!empty($checkout_id) && !empty($checkout_url)) {
                         if ($this->maib_checkout_session_active($client, $auth_token, $checkout_id)) {
                             return array(
                                 'result'   => 'success',
@@ -814,7 +814,7 @@ function maib_checkout_init()
 
                 $checkout_payment = $this->maib_checkout_payment($client, $auth_token, $order_id);
 
-                if (empty($qr_payment)) {
+                if (empty($checkout_payment)) {
                     $checkout_details_response = $client->checkoutDetails($checkout_id, $auth_token);
                     $checkout_details = $this->maib_checkout_get_response_result($checkout_details_response);
                 }
