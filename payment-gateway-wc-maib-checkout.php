@@ -98,7 +98,7 @@ function maib_checkout_init()
                 $this->description = $this->get_test_message($this->description);
             }
 
-            $this->order_template       = $this->get_option('order_template', self::ORDER_TEMPLATE);
+            $this->order_template = $this->get_option('order_template', self::ORDER_TEMPLATE);
 
             // https://github.com/alexminza/maib-checkout-sdk-php/blob/main/src/MaibCheckout/MaibCheckoutClient.php
             $this->maib_checkout_base_url      = $this->testmode ? MaibCheckoutClient::SANDBOX_BASE_URL : MaibCheckoutClient::DEFAULT_BASE_URL;
@@ -509,11 +509,32 @@ function maib_checkout_init()
         }
 
         /**
-         * @link https://docs.maibmerchants.md/checkout/api-reference/endpoints/retrieve-all-checkouts
+         * @link https://docs.maibmerchants.md/checkout/api-reference/endpoints/retrieve-all-payments-by-filter
          */
-        private function maib_checkout_payment(MaibCheckoutClient $client, string $auth_token, string $checkout_id)
+        private function maib_checkout_payment(MaibCheckoutClient $client, string $auth_token, string $order_id)
         {
-            //TODO
+            $payment_list_data = array('orderId' => $order_id);
+            $payment_list_response = $client->paymentList($payment_list_data, $auth_token);
+            $payment_list_result = $this->maib_checkout_get_response_result($payment_list_response);
+
+            if (!empty($payment_list_result)) {
+                $payment_list_result_count = intval($payment_list_result['totalCount']);
+
+                if (1 === $payment_list_result_count) {
+                    $payment_list_result_items = (array) $payment_list_result['items'];
+                    return (array) $payment_list_result_items[0];
+                } elseif ($payment_list_result_count > 1) {
+                    $this->log(
+                        sprintf('Multiple order %1$s payments', $order_id),
+                        WC_Log_Levels::ERROR,
+                        array(
+                            'payment_list_response' => $payment_list_response->toArray(),
+                        )
+                    );
+                }
+            }
+
+            return null;
         }
 
         /**
