@@ -30,10 +30,10 @@ const maib_checkout_label = () => {
 
 const maib_checkout_blockGateway = {
     name: maib_checkout_settings.id,
-    label: Object(window.wp.element.createElement)(maib_checkout_label, null),
+    label: window.wp.element.createElement(maib_checkout_label, null),
     icons: [{id: 'maib_checkout', alt: maib_checkout_settings.title, src: maib_checkout_settings.icon}],
-    content: Object(window.wp.element.createElement)(maib_checkout_content, null),
-    edit: Object(window.wp.element.createElement)(maib_checkout_content, null),
+    content: window.wp.element.createElement(maib_checkout_content, null),
+    edit: window.wp.element.createElement(maib_checkout_content, null),
     canMakePayment: () => true,
     ariaLabel: maib_checkout_title,
     supports: {
