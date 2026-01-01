@@ -63,7 +63,7 @@ final class WC_Gateway_MAIB_Checkout_WBC extends AbstractPaymentMethodType
         );
 
         if (function_exists('wp_set_script_translations')) {
-            wp_set_script_translations($script_id, 'payment-gateway-wc-maib-checkout', dirname(plugin_basename(__FILE__)) . '/languages');
+            wp_set_script_translations($script_id, 'payment-gateway-wc-maib-checkout', plugin_dir_path(__FILE__) . 'languages');
         }
 
         return array($script_id);
