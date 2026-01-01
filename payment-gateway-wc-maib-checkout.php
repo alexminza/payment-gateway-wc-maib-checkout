@@ -67,7 +67,7 @@ function maib_checkout_init()
         /**
          * Default transaction validity (minutes).
          */
-        const DEFAULT_VALIDITY = 60;
+        const DEFAULT_VALIDITY = 30;
         //endregion
 
         protected $testmode, $debug, $logger, $order_template;
@@ -517,7 +517,11 @@ function maib_checkout_init()
          */
         private function maib_checkout_payment(MaibCheckoutClient $client, string $auth_token, string $order_id)
         {
-            $payment_list_data = array('orderId' => $order_id);
+            $payment_list_data = array(
+                'orderId' => $order_id,
+                'status' => 'Executed',
+            );
+
             $payment_list_response = $client->paymentList($payment_list_data, $auth_token);
             $payment_list_result = $this->maib_checkout_get_response_result($payment_list_response);
 
@@ -808,7 +812,7 @@ function maib_checkout_init()
                 $client = $this->init_maib_checkout_client();
                 $auth_token = $this->maib_checkout_generate_token($client);
 
-                $checkout_payment = $this->maib_checkout_payment($client, $auth_token, $checkout_id);
+                $checkout_payment = $this->maib_checkout_payment($client, $auth_token, $order_id);
 
                 if (empty($qr_payment)) {
                     $checkout_details_response = $client->checkoutDetails($checkout_id, $auth_token);
@@ -899,7 +903,7 @@ function maib_checkout_init()
 
             //region Complete order payment
             $payment_data_payment_id = strval($payment_data['paymentId']);
-            $payment_data_reference = strval($payment_data['retrievalReferenceNumber']);
+            $payment_data_reference = strval($payment_data['referenceNumber']);
 
             $order->add_meta_data(self::MOD_PAYMENT_RECEIPT, wp_json_encode($payment_receipt_data), true);
             $order->add_meta_data(self::MOD_PAYMENT_ID, $payment_data_payment_id, true);
