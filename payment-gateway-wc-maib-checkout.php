@@ -139,7 +139,7 @@ function maib_checkout_init()
                     'type'        => 'textarea',
                     'description' => __('Payment method description that the customer will see during checkout.', 'payment-gateway-wc-maib-checkout'),
                     'desc_tip'    => true,
-                    'default'     => __('Pay instantly by scanning the QR code using your bank\'s mobile application.', 'payment-gateway-wc-maib-checkout'),
+                    'default'     => __('Visa, Mastercard, Apple Pay, Google Pay, MIA Instant Payments.', 'payment-gateway-wc-maib-checkout'),
                 ),
 
                 'testmode'        => array(
@@ -461,10 +461,10 @@ function maib_checkout_init()
                     'id'               => strval($order->get_id()),
                     'description'      => $this->get_order_description($order),
                     'date'             => $order->get_date_created()->format('c'),
-                    'orderAmount'      => $order_amount,
-                    'orderCurrency'    => $order_currency,
-                    'deliveryAmount'   => $delivery_amount,
-                    'deliveryCurrency' => $order_currency,
+                    // 'orderAmount'      => $order_amount,
+                    // 'orderCurrency'    => $order_currency,
+                    // 'deliveryAmount'   => $delivery_amount,
+                    // 'deliveryCurrency' => $order_currency,
                     'items'            => $order_items,
                 ),
                 'payerInfo' => array(
