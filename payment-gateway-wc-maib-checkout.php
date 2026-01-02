@@ -1068,7 +1068,7 @@ function maib_checkout_init()
             );
         }
 
-        protected function log(string $message, string $level = WC_Log_Levels::DEBUG, array $additional_context = null)
+        protected function log(string $message, string $level = WC_Log_Levels::DEBUG, ?array $additional_context = null)
         {
             // https://developer.woocommerce.com/docs/best-practices/data-management/logging/
             // https://stackoverflow.com/questions/1423157/print-php-call-stack
@@ -1094,7 +1094,7 @@ function maib_checkout_init()
             return null;
         }
 
-        protected static function return_response(int $status_code, string $response_text = null)
+        protected static function return_response(int $status_code, ?string $response_text = null)
         {
             if (empty($response_text)) {
                 $response_text = get_status_header_desc($status_code);
