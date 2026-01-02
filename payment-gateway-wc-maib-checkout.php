@@ -939,8 +939,8 @@ function maib_checkout_init()
 
             $order = wc_get_order($order_id);
             $order_currency = $order->get_currency();
-            $payment_id = strval($order->get_meta(self::MOD_PAYMENT_ID, true));
 
+            $payment_id = strval($order->get_meta(self::MOD_PAYMENT_ID, true));
             if (empty($payment_id)) {
                 /* translators: 1: Order ID, 2: Meta field key */
                 $message = esc_html(sprintf(__('Order #%1$s missing meta field %2$s.', 'payment-gateway-wc-maib-checkout'), $order_id, self::MOD_PAYMENT_ID));
