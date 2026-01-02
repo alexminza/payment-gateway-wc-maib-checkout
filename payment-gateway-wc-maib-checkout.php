@@ -1084,9 +1084,10 @@ function maib_checkout_init()
             // https://github.com/guzzle/guzzle/issues/2185
             if ($exception instanceof \GuzzleHttp\Command\Exception\CommandException) {
                 $response = $exception->getResponse();
-                $response_body = (string) $response->getBody();
 
-                return $response_body;
+                if (!empty($response)) {
+                    return (string) $response->getBody();
+                }
             }
 
             return null;
