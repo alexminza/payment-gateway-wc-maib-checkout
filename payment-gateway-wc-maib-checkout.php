@@ -536,6 +536,7 @@ function maib_checkout_init()
                         sprintf('Multiple order %1$s payments', $order_id),
                         WC_Log_Levels::ERROR,
                         array(
+                            'order_id' => $order_id,
                             'payment_list_response' => $payment_list_response->toArray(),
                         )
                     );
