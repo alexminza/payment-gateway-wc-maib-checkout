@@ -28,7 +28,7 @@
     },
     "require": {
         "php": ">=7.2.5",
-        "alexminza/maib-checkout-sdk": "*",
+        "alexminza/maib-checkout-sdk": "^1.0",
         "monolog/monolog": "^2.7"
     },
     "config": {

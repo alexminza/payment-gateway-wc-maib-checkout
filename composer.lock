@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b5b11c120991cd301f57026cb08f3d5",
+    "content-hash": "b472a137a83eefb4a1391f6b45045961",
     "packages": [
         {
             "name": "alexminza/maib-checkout-sdk",
