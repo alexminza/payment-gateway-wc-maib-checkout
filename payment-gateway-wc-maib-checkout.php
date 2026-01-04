@@ -441,12 +441,14 @@ function maib_checkout_plugins_loaded_init()
 
             $order_items = array();
             foreach ($order->get_items() as $item) {
-                $product       = $item->get_product();
+                // $product    = $item instanceof \WC_Order_Item_Product ? $item->get_product() : null;
+                // $product_id = !empty($product) ? $product->get_id() : 0;
+
                 $line_total    = $order->get_line_total($item, true, true);
                 $line_quantity = $item->get_quantity();
 
                 $order_items[] = array(
-                    'externalId' => strval($product->get_id()),
+                    'externalId' => strval($item->get_id()),
                     'title'      => $item->get_name(),
                     'amount'     => wc_format_decimal($line_total / $line_quantity, 2),
                     'currency'   => $order_currency,
