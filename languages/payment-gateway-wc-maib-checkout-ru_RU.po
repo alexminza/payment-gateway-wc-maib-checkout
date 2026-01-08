@@ -1,0 +1,298 @@
+# Copyright (C) 2025 Alexander Minza
+# This file is distributed under the GPLv3 or later.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Payment Gateway for maib e-Commerce Checkout for "
+"WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/payment-gateway-"
+"wc-maib-checkout\n"
+"POT-Creation-Date: 2026-01-01 23:17+0200\n"
+"PO-Revision-Date: 2026-01-01 23:28+0200\n"
+"Last-Translator: Alexander Minza <alex@alexminza.com>\n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#. Plugin Name of the plugin
+#: payment-gateway-wc-maib-checkout.php
+msgid "Payment Gateway for maib e-Commerce Checkout for WooCommerce"
+msgstr "Платежный шлюз для maib e-Commerce Checkout для WooCommerce"
+
+#. Description of the plugin
+#: payment-gateway-wc-maib-checkout.php
+msgid ""
+"Accept Visa, Mastercard, Apple Pay, Google Pay, MIA Instant Payments "
+"directly on your store with the maib e-Commerce Checkout payment gateway for "
+"WooCommerce."
+msgstr ""
+"Принимайте Visa, Mastercard, Apple Pay, Google Pay, MIA мгновенные платежи "
+"прямо в своем магазине с помощью платежного шлюза maib e-Commerce Checkout "
+"для WooCommerce."
+
+#: payment-gateway-wc-maib-checkout.php:80
+msgid "Accept maib e-Commerce Checkout payments."
+msgstr "Принимайте платежи через maib e-Commerce Checkout."
+
+#: payment-gateway-wc-maib-checkout.php:122
+msgid "Enable/Disable"
+msgstr "Включить/Выключить"
+
+#: payment-gateway-wc-maib-checkout.php:124
+msgid "Enable this gateway"
+msgstr "Включить платежный шлюз"
+
+#: payment-gateway-wc-maib-checkout.php:128
+msgid "Title"
+msgstr "Наименование"
+
+#: payment-gateway-wc-maib-checkout.php:130
+msgid "Payment method title that the customer will see during checkout."
+msgstr ""
+"Название способа оплаты, которое покупатель увидит при оформлении заказа."
+
+#: payment-gateway-wc-maib-checkout.php:138
+msgid "Description"
+msgstr "Описание"
+
+#: payment-gateway-wc-maib-checkout.php:140
+msgid "Payment method description that the customer will see during checkout."
+msgstr ""
+"Описание способа оплаты, которое покупатель увидит при оформлении заказа."
+
+#: payment-gateway-wc-maib-checkout.php:142
+msgid "Visa, Mastercard, Apple Pay, Google Pay, MIA Instant Payments."
+msgstr "Visa, Mastercard, Apple Pay, Google Pay, MIA мгновенные платежи."
+
+#: payment-gateway-wc-maib-checkout.php:146
+msgid "Test mode"
+msgstr "Тестовый режим"
+
+#: payment-gateway-wc-maib-checkout.php:148
+msgid "Enabled"
+msgstr "Включен"
+
+#: payment-gateway-wc-maib-checkout.php:149
+msgid ""
+"Use Test or Live bank gateway to process the payments. Disable when ready to "
+"accept live payments."
+msgstr ""
+"Использовать Тестовый или Рабочий платежный шлюз на стороне банка. "
+"Отключить, когда будете готовы принимать реальные платежи."
+
+#: payment-gateway-wc-maib-checkout.php:154
+msgid "Debug mode"
+msgstr "Режим отладки"
+
+#: payment-gateway-wc-maib-checkout.php:156
+msgid "Enable logging"
+msgstr "Включить журналирование"
+
+#: payment-gateway-wc-maib-checkout.php:157
+msgid "View logs"
+msgstr "Просмотреть журналы"
+
+#: payment-gateway-wc-maib-checkout.php:158
+msgid ""
+"Save debug messages to the WooCommerce System Status logs. Note: this may "
+"log personal information. Use this for debugging purposes only and delete "
+"the logs when finished."
+msgstr ""
+"Сохранять отладочные сообщения в системный журнал WooCommerce. Внимание: "
+"могут быть записаны персональные данные. Используйте эту опцию только для "
+"отладки и удалите журналы по завершению."
+
+#: payment-gateway-wc-maib-checkout.php:163
+msgid "Order description"
+msgstr "Описание заказа"
+
+#. translators: 1: Example placeholder shown to user, represents Order ID
+#: payment-gateway-wc-maib-checkout.php:166
+#, php-format
+msgid "Format: <code>%1$s</code> - Order ID"
+msgstr "Формат: <code>%1$s</code> - номер заказа"
+
+#: payment-gateway-wc-maib-checkout.php:167
+msgid "Order description that the customer will see in the app during payment."
+msgstr ""
+"Описание заказа, которое покупатель увидит в приложении во время оплаты."
+
+#: payment-gateway-wc-maib-checkout.php:175
+#: payment-gateway-wc-maib-checkout.php:286
+msgid "Connection Settings"
+msgstr "Настройки подключения"
+
+#: payment-gateway-wc-maib-checkout.php:176
+msgid "Payment gateway connection credentials are provided by the bank."
+msgstr ""
+"Учетные данные для подключения к платежному шлюзу предоставляются банком."
+
+#: payment-gateway-wc-maib-checkout.php:180
+msgid "Client ID"
+msgstr "Код клиента"
+
+#: payment-gateway-wc-maib-checkout.php:188
+msgid "Client Secret"
+msgstr "Секретный ключ клиента"
+
+#: payment-gateway-wc-maib-checkout.php:196
+msgid "Signature Key"
+msgstr "Ключ подписи"
+
+#: payment-gateway-wc-maib-checkout.php:205
+msgid "Payment Notification"
+msgstr "Уведомление об оплате"
+
+#: payment-gateway-wc-maib-checkout.php:209
+msgid "Callback URL"
+msgstr "URL обратного вызова"
+
+#: payment-gateway-wc-maib-checkout.php:273
+msgid "Unsupported store currency"
+msgstr "Валюта магазина не поддерживается"
+
+#: payment-gateway-wc-maib-checkout.php:275
+msgid "Supported currencies"
+msgstr "Поддерживаемые валюты"
+
+#. translators: 1: Plugin installation instructions URL
+#: payment-gateway-wc-maib-checkout.php:285
+#, php-format
+msgid ""
+"See plugin documentation for <a href=\"%1$s\" target=\"_blank\">installation "
+"instructions</a>."
+msgstr ""
+"Перейдите на страницу документации плагина для <a href=\"%1$s\" "
+"target=\"_blank\">инструкций по установке</a>."
+
+#: payment-gateway-wc-maib-checkout.php:286
+msgid "Not configured"
+msgstr "Не настроено"
+
+#. translators: 1: Field label
+#: payment-gateway-wc-maib-checkout.php:306
+#, php-format
+msgid "%1$s field must be set."
+msgstr "В поле %1$s должно быть задано значение."
+
+#. translators: 1: Payment method title, 2: Plugin settings URL
+#: payment-gateway-wc-maib-checkout.php:360
+#, php-format
+msgid ""
+"%1$s is not properly configured. Verify plugin <a href=\"%2$s\">Connection "
+"Settings</a>."
+msgstr ""
+"%1$s настроен неправильно. Проверьте <a href=\"%2$s\">Настройки подключения</"
+"a> плагина."
+
+#. translators: 1: Payment method title, 2: Plugin settings URL
+#: payment-gateway-wc-maib-checkout.php:367
+#, php-format
+msgid ""
+"See <a href=\"%2$s\">%1$s settings</a> page for log details and setup "
+"instructions."
+msgstr ""
+"Перейдите на страницу <a href=\"%2$s\">настроек %1$s</a> для просмотра "
+"сведений журнала и инструкций по установке."
+
+#. translators: 1: Order ID, 2: Payment method title, 3: API response details
+#: payment-gateway-wc-maib-checkout.php:630
+#, php-format
+msgid "Order #%1$s payment initiated via %2$s: %3$s"
+msgstr "Оплата заказа #%1$s инициирована через %2$s: %3$s"
+
+#. translators: 1: Order ID, 2: Payment method title
+#: payment-gateway-wc-maib-checkout.php:649
+#, php-format
+msgid "Order #%1$s payment initiation failed via %2$s."
+msgstr "Ошибка инициирования оплаты заказа #%1$s через %2$s."
+
+#. translators: 1: Payment method title
+#: payment-gateway-wc-maib-checkout.php:680
+#, php-format
+msgid "%1$s Callback URL"
+msgstr "%1$s Callback URL"
+
+#: payment-gateway-wc-maib-checkout.php:717
+msgid "Payment notification callback"
+msgstr "Уведомление об оплате"
+
+#: payment-gateway-wc-maib-checkout.php:743
+msgid "Callback signature validation failed."
+msgstr "Ошибка проверки подписи обратного вызова."
+
+#. translators: 1: Order ID, 2: Payment method title
+#: payment-gateway-wc-maib-checkout.php:771
+#, php-format
+msgid "Order not found by Order ID: %1$d received from %2$s."
+msgstr "Заказ не найден по Order ID: %1$d полученному от %2$s."
+
+#. translators: 1: Order ID, 2: Meta field key
+#: payment-gateway-wc-maib-checkout.php:802
+#: payment-gateway-wc-maib-checkout.php:945
+#, php-format
+msgid "Order #%1$s missing meta field %2$s."
+msgstr "В заказе #%1$s отсутствует мета-поле %2$s."
+
+#. translators: 1: Order ID, 2: Payment method title, 3: Payment status
+#: payment-gateway-wc-maib-checkout.php:839
+#, php-format
+msgid "Order #%1$s %2$s payment status: %3$s"
+msgstr "Статус оплаты заказа #%1$s через %2$s: %3$s"
+
+#. translators: 1: Order ID
+#: payment-gateway-wc-maib-checkout.php:853
+#, php-format
+msgid "Order #%1$s payment check failed."
+msgstr "Ошибка проверки оплаты заказа #%1$s."
+
+#. translators: 1: Payment data order ID, 2: Payment data price, 3: Order ID, 4: Order total price
+#: payment-gateway-wc-maib-checkout.php:886
+#, php-format
+msgid "Order payment data mismatch: Payment: #%1$s %2$s, Order: #%3$s %4$s."
+msgstr ""
+"Несоответствие платежных данных заказа: Оплата: #%1$s %2$s, Заказ: #%3$s "
+"%4$s."
+
+#. translators: 1: Order ID
+#: payment-gateway-wc-maib-checkout.php:894
+#, php-format
+msgid "Order #%1$s already fully paid."
+msgstr "Заказ #%1$s уже полностью оплачен."
+
+#. translators: 1: Order ID, 2: Payment method title, 3: Payment data
+#: payment-gateway-wc-maib-checkout.php:913
+#, php-format
+msgid "Order #%1$s payment completed via %2$s: %3$s"
+msgstr "Платеж заказа #%1$s проведен через %2$s: %3$s"
+
+#. translators: 1: Order ID, 2: Refund amount, 3: Payment method title
+#: payment-gateway-wc-maib-checkout.php:975
+#, php-format
+msgid "Order #%1$s refund of %2$s via %3$s approved."
+msgstr "Возврат заказа #%1$s в сумме %2$s через %3$s подтвержден."
+
+#. translators: 1: Order ID, 2: Refund amount, 3: Payment method title
+#: payment-gateway-wc-maib-checkout.php:991
+#, php-format
+msgid "Order #%1$s refund of %2$s via %3$s failed."
+msgstr "Ошибка возврата заказа #%1$s в сумме %2$s через %3$s."
+
+#. translators: 1: Original message
+#: payment-gateway-wc-maib-checkout.php:1027
+#, php-format
+msgid "TEST: %1$s"
+msgstr "ТЕСТ: %1$s"
+
+#: payment-gateway-wc-maib-checkout.php:1114
+msgid "Settings"
+msgstr "Настройки"
+
+#. translators: 1: Payment method title
+#: payment-gateway-wc-maib-checkout.php:1128
+#, php-format
+msgid "Check %1$s order payment"
+msgstr "Проверить оплату заказа через %1$s"

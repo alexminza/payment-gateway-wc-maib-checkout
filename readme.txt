@@ -1,0 +1,77 @@
+=== Payment Gateway for maib e-Commerce Checkout for WooCommerce ===
+Contributors: alexminza
+Tags: Moldova, maib, e-commerce, checkout, payment gateway
+Requires at least: 4.8
+Tested up to: 6.9
+Stable tag: 1.0.0
+Requires PHP: 7.2.5
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+
+Accept Visa, Mastercard, Apple Pay, Google Pay, MIA Instant Payments directly on your store with the maib e-Commerce Checkout payment gateway.
+
+== Description ==
+
+Accept Visa, Mastercard, Apple Pay, Google Pay, MIA Instant Payments directly on your store with the Payment Gateway for maib e-Commerce Checkout for WooCommerce.
+
+= Features =
+
+* Online payments with [maib e-Commerce Checkout](https://www.maib.md/en/persoane-juridice/e-commerce)
+* Reverse transactions – partial or complete refunds
+* Admin order actions – check order payment status
+* Supports WooCommerce [block-based checkout experience](https://woocommerce.com/checkout-blocks/)
+* Free to use – [Open-source GPL-3.0 license on GitHub](https://github.com/alexminza/payment-gateway-wc-maib-checkout)
+
+= Getting Started =
+
+* [Installation Instructions](./installation/)
+* [Frequently Asked Questions](./faq/)
+
+== Installation ==
+
+1. Configure the plugin Connection Settings by entering the connection credentials received from the bank
+2. Provide the *Callback URL* to the bank to enable online payment notifications
+3. Enable *Test* and *Debug* modes in the plugin settings
+4. Perform the following test cases and provide the requested details to the bank:
+    * **Test case #1**: Create a new order and pay
+    * **Test case #2**: Create a new order and pay, afterwards perform a full order refund
+5. Disable *Test* and *Debug* modes when ready to accept live payments
+
+== Frequently Asked Questions ==
+
+= How can I configure the plugin settings? =
+
+Use the *WooCommerce > Settings > Payments > maib e-Commerce Checkout* screen to configure the plugin.
+
+= Where can I get the Connection Settings? =
+
+The connection settings are provided by maib. This data is used by the plugin to connect to the maib e-Commerce Checkout payment gateway and process the transactions. Please see [https://www.maib.md/en/persoane-juridice/e-commerce](https://www.maib.md/en/persoane-juridice/e-commerce) for details.
+
+= What store settings are supported? =
+
+maib e-Commerce Checkout currently supports transactions in MDL (Moldovan Leu).
+
+= How can I contribute to the plugin? =
+
+If you're a developer and you have some ideas to improve the plugin or to solve a bug, feel free to raise an issue or submit a pull request in the [Github repository for the plugin](https://github.com/alexminza/payment-gateway-wc-maib-checkout).
+
+You can also contribute to the plugin by translating it. Simply visit [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/payment-gateway-wc-maib-checkout) to get started.
+
+== Screenshots ==
+
+1. Plugin settings
+2. Connection settings
+3. Refunds
+4. Order actions
+
+== Changelog ==
+
+See [payment-gateway-wc-maib-checkout project releases on GitHub](https://github.com/alexminza/payment-gateway-wc-maib-checkout/releases) for details.
+
+= 1.0.0 =
+Initial version release.
+
+== Upgrade Notice ==
+
+= 1.0.0 =
+Initial version release.
