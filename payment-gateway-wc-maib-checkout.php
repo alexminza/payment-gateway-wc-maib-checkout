@@ -4,7 +4,7 @@
  * Plugin Name: Payment Gateway for maib e-Commerce Checkout for WooCommerce
  * Description: Accept Visa, Mastercard, Apple Pay, Google Pay, MIA Instant Payments directly on your store with the maib e-Commerce Checkout payment gateway for WooCommerce.
  * Plugin URI: https://github.com/alexminza/payment-gateway-wc-maib-checkout
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Alexander Minza
  * Author URI: https://profiles.wordpress.org/alexminza
  * Developer: Alexander Minza
@@ -47,7 +47,7 @@ function maib_checkout_plugins_loaded_init()
         const MOD_ID      = 'maib_checkout';
         const MOD_PREFIX  = 'maib_checkout_';
         const MOD_TITLE   = 'maib e-Commerce Checkout';
-        const MOD_VERSION = '1.0.0';
+        const MOD_VERSION = '1.0.1';
 
         const SUPPORTED_CURRENCIES = array('MDL');
         const ORDER_TEMPLATE       = 'Order #%1$s';
@@ -895,7 +895,7 @@ function maib_checkout_plugins_loaded_init()
             if ($order->is_paid()) {
                 /* translators: 1: Order ID */
                 $message = sprintf(__('Order #%1$s already fully paid.', 'payment-gateway-wc-maib-checkout'), $order_id);
-                $this->log($message, WC_Log_Levels::ERROR);
+                $this->log($message, WC_Log_Levels::WARNING);
 
                 return new WP_Error(WP_Http::ACCEPTED, 'Order already fully paid');
             }
