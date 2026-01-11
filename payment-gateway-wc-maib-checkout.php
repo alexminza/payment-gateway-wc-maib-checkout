@@ -677,6 +677,8 @@ function maib_checkout_plugins_loaded_init()
 
         public function check_response()
         {
+            $this->log_request(__FUNCTION__);
+
             $request_method = isset($_SERVER['REQUEST_METHOD']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD'])) : '';
             if ('GET' === $request_method) {
                 /* translators: 1: Payment method title */
@@ -1080,6 +1082,21 @@ function maib_checkout_plugins_loaded_init()
             }
 
             $this->logger->log($level, $message, $log_context);
+        }
+
+        protected function log_request(string $source)
+        {
+            $this->log(
+                $source,
+                WC_Log_Levels::DEBUG,
+                array(
+                    'ip' => WC_Geolocation::get_ip_address(),
+                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Logging request data for debugging purposes.
+                    'request' => $_REQUEST,
+                    'server' => $_SERVER,
+                    'backtrace' => true,
+                )
+            );
         }
 
         protected static function get_guzzle_error_response_body(Exception $exception)
