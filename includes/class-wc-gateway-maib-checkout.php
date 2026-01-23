@@ -297,8 +297,8 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         // $shipping_tax    = floatval($order->get_shipping_tax());
         // $delivery_amount = wc_format_decimal($shipping_total + $shipping_tax, 2);
 
-        $order_total    = $order->get_total();
-        // $order_amount   = wc_format_decimal(floatval($order_total) - floatval($delivery_amount), 2);
+        $order_total    = floatval($order->get_total());
+        // $order_amount   = wc_format_decimal($order_total - floatval($delivery_amount), 2);
         $order_currency = $order->get_currency();
 
         $order_items = array();
@@ -743,7 +743,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         $payment_data_currency = strval($payment_data['currency']);
 
         $order_id = $order->get_id();
-        $order_total = $order->get_total();
+        $order_total = floatval($order->get_total());
         $order_currency = $order->get_currency();
 
         $order_price = $this->format_price($order_total, $order_currency);
@@ -806,6 +806,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
         $order = wc_get_order($order_id);
         $order_currency = $order->get_currency();
+        $amount = floatval($amount);
 
         $payment_id = strval($order->get_meta(self::MOD_PAYMENT_ID, true));
         if (empty($payment_id)) {
