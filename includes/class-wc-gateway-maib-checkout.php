@@ -486,8 +486,8 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
             //region Update order payment transaction metadata
             // https://developer.woocommerce.com/docs/features/high-performance-order-storage/recipe-book/#apis-for-gettingsetting-posts-and-postmeta
-            $order->add_meta_data(self::MOD_CHECKOUT_ID, $checkout_id, true);
-            $order->add_meta_data(self::MOD_CHECKOUT_URL, $checkout_url, true);
+            $order->update_meta_data(self::MOD_CHECKOUT_ID, $checkout_id);
+            $order->update_meta_data(self::MOD_CHECKOUT_URL, $checkout_url);
             $order->save();
             //endregion
 
@@ -770,8 +770,8 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         $payment_data_payment_id = strval($payment_data['paymentId']);
         $payment_data_reference = strval($payment_data['referenceNumber']);
 
-        $order->add_meta_data(self::MOD_PAYMENT_RECEIPT, wp_json_encode($payment_receipt_data), true);
-        $order->add_meta_data(self::MOD_PAYMENT_ID, $payment_data_payment_id, true);
+        $order->update_meta_data(self::MOD_PAYMENT_RECEIPT, wp_json_encode($payment_receipt_data));
+        $order->update_meta_data(self::MOD_PAYMENT_ID, $payment_data_payment_id);
         $order->save();
 
         $order->payment_complete($payment_data_reference);
