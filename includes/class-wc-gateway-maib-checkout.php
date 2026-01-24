@@ -297,13 +297,13 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
      */
     private function maib_checkout_register(MaibCheckoutClient $client, string $auth_token, \WC_Order $order)
     {
-        // $shipping_total  = floatval($order->get_shipping_total());
-        // $shipping_tax    = floatval($order->get_shipping_tax());
-        // $delivery_amount = wc_format_decimal($shipping_total + $shipping_tax, 2);
-
         $order_total    = floatval($order->get_total());
         $order_currency = $order->get_currency();
         $order_date     = $order->get_date_created() ?? new \WC_DateTime();
+
+        // $shipping_total  = floatval($order->get_shipping_total());
+        // $shipping_tax    = floatval($order->get_shipping_tax());
+        // $delivery_amount = wc_format_decimal($shipping_total + $shipping_tax, 2);
 
         $order_items = array();
         foreach ($order->get_items() as $item) {
@@ -538,6 +538,9 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         );
     }
 
+    /**
+     * @link https://docs.maibmerchants.md/checkout/api-reference/callback-notifications
+     */
     public function check_response()
     {
         $this->log_request(__FUNCTION__);
