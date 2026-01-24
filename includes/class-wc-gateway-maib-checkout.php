@@ -623,15 +623,14 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         //endregion
 
         //region Validate payment status
-        $callback_data_result = (array) $callback_data['result'];
-        $callback_payment_status = strval($callback_data_result['paymentStatus']);
+        $callback_payment_status = strval($callback_data['paymentStatus']);
         if (strtolower($callback_payment_status) !== 'executed') {
             return self::return_response(\WP_Http::ACCEPTED);
         }
         //endregion
 
         //region Validate order ID
-        $callback_order_id = absint($callback_data_result['orderId']);
+        $callback_order_id = absint($callback_data['orderId']);
         $order = wc_get_order($callback_order_id);
 
         if (empty($order)) {
@@ -649,7 +648,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         }
         //endregion
 
-        $confirm_payment_result = $this->confirm_payment($order, $callback_data_result, $callback_data);
+        $confirm_payment_result = $this->confirm_payment($order, $callback_data, $callback_data);
 
         if (is_wp_error($confirm_payment_result)) {
             return self::return_response($confirm_payment_result->get_error_code(), $confirm_payment_result->get_error_message());
