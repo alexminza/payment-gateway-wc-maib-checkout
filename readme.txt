@@ -68,10 +68,16 @@ You can also contribute to the plugin by translating it. Simply visit [translate
 
 See [payment-gateway-wc-maib-checkout project releases on GitHub](https://github.com/alexminza/payment-gateway-wc-maib-checkout/releases) for details.
 
+= 1.0.1 =
+Code reorganization and refactoring for better maintainability.
+
 = 1.0.0 =
 Initial version release.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Code reorganization and refactoring for better maintainability.
 
 = 1.0.0 =
 Initial version release.
