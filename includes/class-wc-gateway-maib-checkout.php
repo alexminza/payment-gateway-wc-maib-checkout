@@ -302,23 +302,21 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         // $delivery_amount = wc_format_decimal($shipping_total + $shipping_tax, 2);
 
         $order_total    = floatval($order->get_total());
-        // $order_amount   = wc_format_decimal($order_total - floatval($delivery_amount), 2);
         $order_currency = $order->get_currency();
 
         $order_items = array();
         foreach ($order->get_items() as $item) {
-            // $product    = $item instanceof \WC_Order_Item_Product ? $item->get_product() : null;
-            // $product_id = !empty($product) ? $product->get_id() : 0;
-
-            $line_total    = $order->get_line_total($item, true, true);
-            $line_quantity = $item->get_quantity();
+            // $product     = $item instanceof \WC_Order_Item_Product ? $item->get_product() : null;
+            // $product_id  = !empty($product) ? $product->get_id() : 0;
+            // $external_id = $item->get_variation_id() ?? $item->get_product_id();
+            // $line_total  = $order->get_line_total($item, true, true);
 
             $order_items[] = array(
                 'externalId' => strval($item->get_id()),
                 'title'      => $item->get_name(),
-                'amount'     => wc_format_decimal($line_total / $line_quantity, 2),
+                'amount'     => $order->get_item_total($item, true, true),
                 'currency'   => $order_currency,
-                'quantity'   => $line_quantity,
+                'quantity'   => $item->get_quantity(),
             );
         }
 
@@ -329,7 +327,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
                 'id'               => strval($order->get_id()),
                 'description'      => $this->get_order_description($order),
                 'date'             => $order->get_date_created()->format('c'),
-                // 'orderAmount'      => $order_amount,
+                // 'orderAmount'      => wc_format_decimal($order_total - floatval($delivery_amount), 2);,
                 // 'orderCurrency'    => $order_currency,
                 // 'deliveryAmount'   => $delivery_amount,
                 // 'deliveryCurrency' => $order_currency,
