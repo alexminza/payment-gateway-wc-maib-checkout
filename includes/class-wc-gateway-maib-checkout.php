@@ -306,13 +306,14 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
         $order_items = array();
         foreach ($order->get_items() as $item) {
-            // $product     = $item instanceof \WC_Order_Item_Product ? $item->get_product() : null;
+            $product     = $item instanceof \WC_Order_Item_Product ? $item->get_product() : null;
+            $product_sku = !empty($product) ? $product->get_sku() : '';
             // $product_id  = !empty($product) ? $product->get_id() : 0;
             // $external_id = $item->get_variation_id() ?? $item->get_product_id();
             // $line_total  = $order->get_line_total($item, true, true);
 
             $order_items[] = array(
-                'externalId' => strval($item->get_id()),
+                'externalId' => $product_sku,
                 'title'      => $item->get_name(),
                 'amount'     => $order->get_item_total($item, true, true),
                 'currency'   => $order_currency,
