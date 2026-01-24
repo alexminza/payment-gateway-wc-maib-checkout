@@ -303,6 +303,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
         $order_total    = floatval($order->get_total());
         $order_currency = $order->get_currency();
+        $order_date     = $order->get_date_created() ?? new \WC_DateTime();
 
         $order_items = array();
         foreach ($order->get_items() as $item) {
@@ -327,7 +328,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
             'orderInfo' => array(
                 'id'               => strval($order->get_id()),
                 'description'      => $this->get_order_description($order),
-                'date'             => $order->get_date_created()->format('c'),
+                'date'             => $order_date->format('c'),
                 // 'orderAmount'      => wc_format_decimal($order_total - floatval($delivery_amount), 2);,
                 // 'orderCurrency'    => $order_currency,
                 // 'deliveryAmount'   => $delivery_amount,
