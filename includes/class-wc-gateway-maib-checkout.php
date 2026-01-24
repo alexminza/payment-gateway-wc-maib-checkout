@@ -585,6 +585,8 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
                 \WC_Log_Levels::DEBUG,
                 array(
                     'validation_result' => $validation_result,
+                    'signature_header' => $signature_header,
+                    'signature_timestamp' => $signature_timestamp,
                     // 'callback_body' => $callback_body,
                     'callback_data' => $callback_data,
                 )
@@ -613,6 +615,8 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
                 \WC_Log_Levels::ERROR,
                 array(
                     'validation_result' => $validation_result,
+                    'signature_header' => $signature_header,
+                    'signature_timestamp' => $signature_timestamp,
                     'callback_data' => $callback_data,
                 )
             );
