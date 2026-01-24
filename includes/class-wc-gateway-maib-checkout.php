@@ -908,7 +908,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
     public static function action_check_payment(\WC_Order $order)
     {
-        $plugin = new self();
+        $plugin = self::get_payment_gateway_instance();
         $plugin->check_payment($order);
     }
     //endregion
