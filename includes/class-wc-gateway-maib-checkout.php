@@ -283,6 +283,10 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         $get_token_response = $client->getToken($this->maib_checkout_client_id, $this->maib_checkout_client_secret);
         $get_token_result = $this->maib_checkout_get_response_result($get_token_response);
 
+        if (empty($get_token_result) || !isset($get_token_result['accessToken'])) {
+            throw new \Exception('Failed to obtain maib e-Commerce Checkout API access token');
+        }
+
         $access_token = strval($get_token_result['accessToken']);
         return $access_token;
     }
