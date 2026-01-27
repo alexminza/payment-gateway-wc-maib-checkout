@@ -345,7 +345,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
             'language'    => substr(get_user_locale(), 0, 2),
             'callbackUrl' => $this->maib_checkout_callback_url,
             'successUrl'  => $this->get_redirect_url($order),
-            'failUrl'     => $order->get_cancel_order_url(), // $order->get_checkout_payment_url()
+            'failUrl'     => $order->get_checkout_payment_url(), // $order->get_cancel_order_url()
         );
 
         return $client->checkoutRegister($checkout_data, $auth_token);
