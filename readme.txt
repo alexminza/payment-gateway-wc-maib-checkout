@@ -70,7 +70,7 @@ See [payment-gateway-wc-maib-checkout project releases on GitHub](https://github
 
 = 1.0.1 =
 * Improved [Composer packages versions compatibility](https://vanrossum.dev/37-wordpress-and-composer) by using [Jetpack Autoloader by Automattic](https://github.com/Automattic/jetpack-autoloader)
-* Code reorganization and refactoring for better maintainability.
+* Code reorganization and refactoring for better maintainability
 
 = 1.0.0 =
 Initial version release.
