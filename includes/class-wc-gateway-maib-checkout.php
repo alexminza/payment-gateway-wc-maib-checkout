@@ -189,22 +189,6 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
             && !empty($this->maib_checkout_callback_url);
     }
 
-    protected function validate_settings()
-    {
-        if (!parent::validate_settings()) {
-            return false;
-        }
-
-        if (!$this->check_settings()) {
-            /* translators: 1: Plugin installation instructions URL */
-            $message_instructions = sprintf(__('See plugin documentation for <a href="%1$s" target="_blank">installation instructions</a>.', 'payment-gateway-wc-maib-checkout'), 'https://wordpress.org/plugins/payment-gateway-wc-maib-checkout/#installation');
-            $this->add_error(sprintf('<strong>%1$s</strong>: %2$s. %3$s', esc_html__('Connection Settings', 'payment-gateway-wc-maib-checkout'), esc_html__('Not configured', 'payment-gateway-wc-maib-checkout'), wp_kses_post($message_instructions)));
-            return false;
-        }
-
-        return true;
-    }
-
     public function validate_order_template_field($key, $value)
     {
         return $this->validate_required_field($key, $value);
@@ -879,22 +863,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     }
     //endregion
 
-    //region Utility
-    protected function get_redirect_url(\WC_Order $order)
-    {
-        $redirect_url = $this->get_return_url($order);
-        return (string) apply_filters('maib_checkout_redirect_url', $redirect_url, $order);
-    }
-
-    protected function get_callback_url()
-    {
-        // https://developer.woocommerce.com/docs/extensions/core-concepts/woocommerce-plugin-api-callback/
-        $callback_url = WC()->api_request_url("wc_{$this->id}");
-        return (string) apply_filters('maib_checkout_callback_url', $callback_url);
-    }
-    //endregion
-
-    //region Init
+    //region Integration
     public static function order_actions(array $actions, \WC_Order $order)
     {
         if ($order->is_paid() || $order->get_payment_method() !== self::MOD_ID) {
