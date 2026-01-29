@@ -78,6 +78,8 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
     public function init_form_fields()
     {
+        $callback_url = $this->get_callback_url();
+
         $this->form_fields = array(
             'enabled'         => array(
                 'title'       => __('Enable/Disable', 'payment-gateway-wc-maib-checkout'),
@@ -169,9 +171,9 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
             'maib_checkout_callback_url' => array(
                 'title'       => __('Callback URL', 'payment-gateway-wc-maib-checkout'),
                 'type'        => 'text',
-                'description' => sprintf('<code>%1$s</code>', esc_url($this->get_callback_url())),
+                'description' => sprintf('<code>%1$s</code>', esc_url($callback_url)),
                 'desc_tip'    => 'Callback URL',
-                'default'     => $this->get_callback_url(),
+                'default'     => $callback_url,
                 'custom_attributes' => array(
                     'required' => 'required',
                 ),
