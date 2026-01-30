@@ -59,7 +59,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
         parent::__construct();
 
-        $this->icon = plugins_url('/assets/img/maib.svg', self::MOD_PLUGIN_FILE);
+        $this->icon = plugins_url('assets/img/maib.svg', self::MOD_PLUGIN_FILE);
 
         // https://github.com/alexminza/maib-checkout-sdk-php/blob/main/src/MaibCheckout/MaibCheckoutClient.php
         $this->maib_checkout_base_url      = $this->testmode ? MaibCheckoutClient::SANDBOX_BASE_URL : MaibCheckoutClient::DEFAULT_BASE_URL;
