@@ -1,4 +1,4 @@
-# Copyright (C) 2025 Alexander Minza
+# Copyright (C) 2026 Alexander Minza
 # This file is distributed under the GPLv3 or later.
 #, fuzzy
 msgid ""
@@ -7,8 +7,8 @@ msgstr ""
 "WooCommerce 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/payment-gateway-"
 "wc-maib-checkout\n"
-"POT-Creation-Date: 2026-02-02 12:45+0200\n"
-"PO-Revision-Date: 2026-02-02 12:49+0200\n"
+"POT-Creation-Date: 2026-02-02 12:58+0200\n"
+"PO-Revision-Date: 2026-02-02 12:58+0200\n"
 "Last-Translator: Alexander Minza <alex@alexminza.com>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
