@@ -1,11 +1,10 @@
 # Copyright (C) 2026 Alexander Minza
 # This file is distributed under the GPLv3 or later.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Payment Gateway for maib e-Commerce Checkout for WooCommerce 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/payment-gateway-wc-maib-checkout\n"
-"POT-Creation-Date: 2026-02-02 12:58+0200\n"
+"POT-Creation-Date: 2026-02-02 13:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
