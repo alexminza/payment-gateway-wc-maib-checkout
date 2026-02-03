@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b472a137a83eefb4a1391f6b45045961",
+    "content-hash": "46f1848d26c9cdfba54b2c7391536ed3",
     "packages": [
         {
             "name": "alexminza/maib-checkout-sdk",
-            "version": "v1.0.0",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexminza/maib-checkout-sdk-php.git",
-                "reference": "b1a2ccbcd3da4d04b2bfbb6da840b6fcb5178446"
+                "reference": "7b439eded1f81f426cdbf2fcb84e51e4ba493637"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexminza/maib-checkout-sdk-php/zipball/b1a2ccbcd3da4d04b2bfbb6da840b6fcb5178446",
-                "reference": "b1a2ccbcd3da4d04b2bfbb6da840b6fcb5178446",
+                "url": "https://api.github.com/repos/alexminza/maib-checkout-sdk-php/zipball/7b439eded1f81f426cdbf2fcb84e51e4ba493637",
+                "reference": "7b439eded1f81f426cdbf2fcb84e51e4ba493637",
                 "shasum": ""
             },
             "require": {
@@ -26,8 +26,11 @@
                 "php": ">=7.2.5"
             },
             "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "*",
                 "monolog/monolog": "*",
+                "phpcompatibility/php-compatibility": "*",
                 "phpunit/phpunit": "*",
+                "squizlabs/php_codesniffer": "*",
                 "vlucas/phpdotenv": "*"
             },
             "suggest": {
@@ -59,7 +62,6 @@
                 "e-commerce",
                 "maib",
                 "payments",
-                "php",
                 "sdk"
             ],
             "support": {
@@ -67,7 +69,125 @@
                 "issues": "https://github.com/alexminza/maib-checkout-sdk-php/issues",
                 "source": "https://github.com/alexminza/maib-checkout-sdk-php"
             },
-            "time": "2025-12-31T10:15:23+00:00"
+            "time": "2026-02-02T10:35:49+00:00"
+        },
+        {
+            "name": "alexminza/wc-payment-gateway-base",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexminza/wc-payment-gateway-base.git",
+                "reference": "b8248963ea5b1e9649cc5f27c5ffadc2e8115e0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexminza/wc-payment-gateway-base/zipball/b8248963ea5b1e9649cc5f27c5ffadc2e8115e0b",
+                "reference": "b8248963ea5b1e9649cc5f27c5ffadc2e8115e0b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "woocommerce/woocommerce-sniffs": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlexMinza\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Minza",
+                    "homepage": "https://www.alexminza.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Payment Gateway Base for WooCommerce",
+            "homepage": "https://github.com/alexminza/wc-payment-gateway-base",
+            "keywords": [
+                "payments",
+                "php",
+                "sdk",
+                "woocommerce",
+                "wordpress"
+            ],
+            "support": {
+                "forum": "https://github.com/alexminza/wc-payment-gateway-base/discussions",
+                "issues": "https://github.com/alexminza/wc-payment-gateway-base/issues",
+                "source": "https://github.com/alexminza/wc-payment-gateway-base"
+            },
+            "time": "2026-01-30T11:41:07+00:00"
+        },
+        {
+            "name": "automattic/jetpack-autoloader",
+            "version": "v5.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Automattic/jetpack-autoloader.git",
+                "reference": "d5263d6ffa91dc0d0d39b1df54de1e9bb2091364"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/d5263d6ffa91dc0d0d39b1df54de1e9bb2091364",
+                "reference": "d5263d6ffa91dc0d0d39b1df54de1e9bb2091364",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.2",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "automattic/jetpack-changelogger": "^6.0.12",
+                "automattic/phpunit-select-config": "^1.0.3",
+                "composer/composer": "^2.2",
+                "yoast/phpunit-polyfills": "^4.0.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Automattic\\Jetpack\\Autoloader\\CustomAutoloaderPlugin",
+                "autotagger": true,
+                "mirror-repo": "Automattic/jetpack-autoloader",
+                "branch-alias": {
+                    "dev-trunk": "5.0.x-dev"
+                },
+                "changelogger": {
+                    "link-template": "https://github.com/Automattic/jetpack-autoloader/compare/v${old}...v${new}"
+                },
+                "version-constants": {
+                    "::VERSION": "src/AutoloadGenerator.php"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Automattic\\Jetpack\\Autoloader\\": "src"
+                },
+                "classmap": [
+                    "src/AutoloadGenerator.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Creates a custom autoloader for a plugin or theme.",
+            "keywords": [
+                "autoload",
+                "autoloader",
+                "composer",
+                "jetpack",
+                "plugin",
+                "wordpress"
+            ],
+            "support": {
+                "source": "https://github.com/Automattic/jetpack-autoloader/tree/v5.0.15"
+            },
+            "time": "2025-12-15T11:22:11+00:00"
         },
         {
             "name": "guzzlehttp/command",

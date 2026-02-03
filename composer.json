@@ -29,15 +29,20 @@
     "require": {
         "php": ">=7.2.5",
         "alexminza/maib-checkout-sdk": "^1.0",
-        "monolog/monolog": "^2.7"
+        "alexminza/wc-payment-gateway-base": "^1.0",
+        "monolog/monolog": "^2.7",
+        "automattic/jetpack-autoloader": "^5.0"
     },
     "config": {
         "platform": {
             "php": "7.2.5"
         },
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "automattic/jetpack-autoloader": true
+        },
+        "autoloader-suffix": "WC_Gateway_MAIB_Checkout",
+        "optimize-autoloader": true
     },
     "prefer-stable": true,
     "require-dev": {
