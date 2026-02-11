@@ -2,7 +2,7 @@
 Contributors: alexminza
 Tags: Moldova, maib, e-commerce, checkout, payment gateway
 Requires at least: 4.8
-Tested up to: 6.9.1
+Tested up to: 6.9
 Stable tag: 1.0.2
 Requires PHP: 7.2.5
 License: GPLv3 or later

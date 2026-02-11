@@ -575,7 +575,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
             $validation_result = MaibCheckoutClient::validateCallbackSignature($callback_body, $signature_header, $signature_timestamp, $this->maib_checkout_signature_key);
             $this->log(
                 sprintf(__('Payment notification callback', 'payment-gateway-wc-maib-checkout')),
-                \WC_Log_Levels::DEBUG,
+                \WC_Log_Levels::INFO,
                 array(
                     'validation_result' => $validation_result,
                     'signature_header' => $signature_header,
@@ -734,8 +734,8 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     {
         //region Check order data
         $payment_data_order_id = intval($payment_data['orderId']);
-        $payment_data_amount = floatval($payment_data['amount']);
-        $payment_data_currency = strval($payment_data['currency']);
+        $payment_data_amount = floatval($payment_data['paymentAmount']);
+        $payment_data_currency = strval($payment_data['paymentCurrency']);
 
         $order_id = $order->get_id();
         $order_total = floatval($order->get_total());
@@ -763,7 +763,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
         //region Complete order payment
         $payment_data_payment_id = strval($payment_data['paymentId']);
-        $payment_data_reference = strval($payment_data['referenceNumber']);
+        $payment_data_reference = strval($payment_data['retrievalReferenceNumber']);
 
         $order->update_meta_data(self::MOD_PAYMENT_RECEIPT, wp_json_encode($payment_receipt_data));
         $order->update_meta_data(self::MOD_PAYMENT_ID, $payment_data_payment_id);
