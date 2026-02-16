@@ -736,10 +736,10 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     {
         //region Check order data
         $payment_data_order_id = intval($payment_data['orderId']);
-        $payment_data_amount = floatval($payment_data['paymentAmount']);
-        $payment_data_currency = strval($payment_data['paymentCurrency']);
+        $payment_data_amount   = floatval($payment_data['paymentAmount'] ?? $payment_data['amount']);
+        $payment_data_currency = strval($payment_data['paymentCurrency'] ?? $payment_data['currency']);
 
-        $order_id = $order->get_id();
+        $order_id    = $order->get_id();
         $order_total = floatval($order->get_total());
         $order_currency = $order->get_currency();
 
@@ -767,7 +767,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
         //region Complete order payment
         $payment_data_payment_id = strval($payment_data['paymentId']);
-        $payment_data_reference = strval($payment_data['retrievalReferenceNumber']);
+        $payment_data_reference  = strval($payment_data['retrievalReferenceNumber'] ?? $payment_data['referenceNumber']);
 
         $order->update_meta_data(self::MOD_PAYMENT_RECEIPT, wp_json_encode($payment_receipt_data));
         $order->update_meta_data(self::MOD_PAYMENT_ID, $payment_data_payment_id);
