@@ -4,7 +4,7 @@
  * Plugin Name: Payment Gateway for maib e-Commerce Checkout for WooCommerce
  * Description: Accept Visa, Mastercard, Apple Pay, Google Pay, MIA Instant Payments directly on your store with the maib e-Commerce Checkout payment gateway for WooCommerce.
  * Plugin URI: https://github.com/alexminza/payment-gateway-wc-maib-checkout
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Alexander Minza
  * Author URI: https://profiles.wordpress.org/alexminza
  * Developer: Alexander Minza
