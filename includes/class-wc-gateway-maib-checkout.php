@@ -19,7 +19,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     const MOD_TEXT_DOMAIN = 'payment-gateway-wc-maib-checkout';
     const MOD_PREFIX      = 'maib_checkout_';
     const MOD_TITLE       = 'maib e-Commerce Checkout';
-    const MOD_VERSION     = '1.0.1';
+    const MOD_VERSION     = '1.0.2';
     const MOD_PLUGIN_FILE = MAIB_CHECKOUT_MOD_PLUGIN_FILE;
 
     const SUPPORTED_CURRENCIES = array('MDL');
@@ -575,7 +575,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
             $validation_result = MaibCheckoutClient::validateCallbackSignature($callback_body, $signature_header, $signature_timestamp, $this->maib_checkout_signature_key);
             $this->log(
                 sprintf(__('Payment notification callback', 'payment-gateway-wc-maib-checkout')),
-                \WC_Log_Levels::DEBUG,
+                \WC_Log_Levels::INFO,
                 array(
                     'validation_result' => $validation_result,
                     'signature_header' => $signature_header,
@@ -734,10 +734,10 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     {
         //region Check order data
         $payment_data_order_id = intval($payment_data['orderId']);
-        $payment_data_amount = floatval($payment_data['amount']);
-        $payment_data_currency = strval($payment_data['currency']);
+        $payment_data_amount   = floatval($payment_data['paymentAmount'] ?? $payment_data['amount']);
+        $payment_data_currency = strval($payment_data['paymentCurrency'] ?? $payment_data['currency']);
 
-        $order_id = $order->get_id();
+        $order_id    = $order->get_id();
         $order_total = floatval($order->get_total());
         $order_currency = $order->get_currency();
 
@@ -747,6 +747,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         if ($order_id !== $payment_data_order_id || $order_price !== $payment_data_price) {
             /* translators: 1: Payment data order ID, 2: Payment data price, 3: Order ID, 4: Order total price */
             $message = sprintf(__('Order payment data mismatch: Payment: #%1$s %2$s, Order: #%3$s %4$s.', 'payment-gateway-wc-maib-checkout'), $payment_data_order_id, $payment_data_price, $order_id, $order_price);
+            $message = $this->get_test_message($message);
             $this->log($message, \WC_Log_Levels::ERROR);
 
             return new \WP_Error(\WP_Http::UNPROCESSABLE_ENTITY, 'Order payment data mismatch');
@@ -755,6 +756,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         if ($order->is_paid()) {
             /* translators: 1: Order ID */
             $message = sprintf(__('Order #%1$s already fully paid.', 'payment-gateway-wc-maib-checkout'), $order_id);
+            $message = $this->get_test_message($message);
             $this->log($message, \WC_Log_Levels::WARNING);
 
             return new \WP_Error(\WP_Http::ACCEPTED, 'Order already fully paid');
@@ -763,7 +765,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
         //region Complete order payment
         $payment_data_payment_id = strval($payment_data['paymentId']);
-        $payment_data_reference = strval($payment_data['referenceNumber']);
+        $payment_data_reference  = strval($payment_data['retrievalReferenceNumber'] ?? $payment_data['referenceNumber']);
 
         $order->update_meta_data(self::MOD_PAYMENT_RECEIPT, wp_json_encode($payment_receipt_data));
         $order->update_meta_data(self::MOD_PAYMENT_ID, $payment_data_payment_id);
