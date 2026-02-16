@@ -378,6 +378,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
             'orderId' => $order_id,
             'status' => 'Executed',
             'count' => 10,
+            'offset' => 0,
         );
 
         $payment_list_response = $client->paymentList($payment_list_data, $auth_token);
