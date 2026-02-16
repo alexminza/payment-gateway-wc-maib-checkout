@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Payment Gateway for maib e-Commerce Checkout for WooCommerce 1.0.1\n"
+"Project-Id-Version: Payment Gateway for maib e-Commerce Checkout for WooCommerce 1.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/payment-gateway-wc-maib-checkout\n"
-"POT-Creation-Date: 2026-02-02 13:26+0200\n"
+"POT-Creation-Date: 2026-02-16 15:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,188 +27,188 @@ msgstr ""
 msgid "Accept maib e-Commerce Checkout payments."
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:85
+#: includes/class-wc-gateway-maib-checkout.php:88
 msgid "Enable/Disable"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:87
+#: includes/class-wc-gateway-maib-checkout.php:90
 msgid "Enable this gateway"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:91
+#: includes/class-wc-gateway-maib-checkout.php:94
 msgid "Title"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:93
+#: includes/class-wc-gateway-maib-checkout.php:96
 msgid "Payment method title that the customer will see during checkout."
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:101
+#: includes/class-wc-gateway-maib-checkout.php:104
 msgid "Description"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:103
+#: includes/class-wc-gateway-maib-checkout.php:106
 msgid "Payment method description that the customer will see during checkout."
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:105
+#: includes/class-wc-gateway-maib-checkout.php:108
 msgid "Visa, Mastercard, Apple Pay, Google Pay, MIA Instant Payments."
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:109
+#: includes/class-wc-gateway-maib-checkout.php:112
 msgid "Test mode"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:111
+#: includes/class-wc-gateway-maib-checkout.php:114
 msgid "Enabled"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:112
+#: includes/class-wc-gateway-maib-checkout.php:115
 msgid "Use Test or Live bank gateway to process the payments. Disable when ready to accept live payments."
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:117
+#: includes/class-wc-gateway-maib-checkout.php:120
 msgid "Debug mode"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:119
+#: includes/class-wc-gateway-maib-checkout.php:122
 msgid "Enable logging"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:120
+#: includes/class-wc-gateway-maib-checkout.php:123
 msgid "View logs"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:121
+#: includes/class-wc-gateway-maib-checkout.php:124
 msgid "Save debug messages to the WooCommerce System Status logs. Note: this may log personal information. Use this for debugging purposes only and delete the logs when finished."
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:126
+#: includes/class-wc-gateway-maib-checkout.php:129
 msgid "Order description"
 msgstr ""
 
 #. translators: 1: Example placeholder shown to user, represents Order ID
-#: includes/class-wc-gateway-maib-checkout.php:129
+#: includes/class-wc-gateway-maib-checkout.php:132
 #, php-format
 msgid "Format: <code>%1$s</code> - Order ID"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:130
+#: includes/class-wc-gateway-maib-checkout.php:133
 msgid "Order description that the customer will see in the app during payment."
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:138
+#: includes/class-wc-gateway-maib-checkout.php:141
 #: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:103
 msgid "Connection Settings"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:139
+#: includes/class-wc-gateway-maib-checkout.php:142
 msgid "Payment gateway connection credentials are provided by the bank."
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:143
+#: includes/class-wc-gateway-maib-checkout.php:146
 msgid "Client ID"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:151
+#: includes/class-wc-gateway-maib-checkout.php:154
 msgid "Client Secret"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:159
+#: includes/class-wc-gateway-maib-checkout.php:162
 msgid "Signature Key"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:168
+#: includes/class-wc-gateway-maib-checkout.php:171
 msgid "Payment Notification"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:172
+#: includes/class-wc-gateway-maib-checkout.php:175
 msgid "Callback URL"
 msgstr ""
 
 #. translators: 1: Order ID, 2: Payment method title, 3: API response details
-#: includes/class-wc-gateway-maib-checkout.php:485
+#: includes/class-wc-gateway-maib-checkout.php:488
 #, php-format
 msgid "Order #%1$s payment initiated via %2$s: %3$s"
 msgstr ""
 
 #. translators: 1: Order ID, 2: Payment method title
-#: includes/class-wc-gateway-maib-checkout.php:504
+#: includes/class-wc-gateway-maib-checkout.php:507
 #, php-format
 msgid "Order #%1$s payment initiation failed via %2$s."
 msgstr ""
 
 #. translators: 1: Payment method title
-#: includes/class-wc-gateway-maib-checkout.php:537
+#: includes/class-wc-gateway-maib-checkout.php:540
 #, php-format
 msgid "%1$s Callback URL"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:574
+#: includes/class-wc-gateway-maib-checkout.php:577
 msgid "Payment notification callback"
 msgstr ""
 
-#: includes/class-wc-gateway-maib-checkout.php:602
+#: includes/class-wc-gateway-maib-checkout.php:605
 msgid "Callback signature validation failed."
 msgstr ""
 
 #. translators: 1: Order ID, 2: Payment method title
-#: includes/class-wc-gateway-maib-checkout.php:631
+#: includes/class-wc-gateway-maib-checkout.php:634
 #, php-format
 msgid "Order not found by Order ID: %1$d received from %2$s."
 msgstr ""
 
 #. translators: 1: Order ID, 2: Meta field key
-#: includes/class-wc-gateway-maib-checkout.php:662
-#: includes/class-wc-gateway-maib-checkout.php:807
+#: includes/class-wc-gateway-maib-checkout.php:665
+#: includes/class-wc-gateway-maib-checkout.php:812
 #, php-format
 msgid "Order #%1$s missing meta field %2$s."
 msgstr ""
 
 #. translators: 1: Order ID, 2: Payment method title, 3: Payment status
-#: includes/class-wc-gateway-maib-checkout.php:699
+#: includes/class-wc-gateway-maib-checkout.php:702
 #, php-format
 msgid "Order #%1$s %2$s payment status: %3$s"
 msgstr ""
 
 #. translators: 1: Order ID
-#: includes/class-wc-gateway-maib-checkout.php:713
+#: includes/class-wc-gateway-maib-checkout.php:716
 #, php-format
 msgid "Order #%1$s payment check failed."
 msgstr ""
 
 #. translators: 1: Payment data order ID, 2: Payment data price, 3: Order ID, 4: Order total price
-#: includes/class-wc-gateway-maib-checkout.php:746
+#: includes/class-wc-gateway-maib-checkout.php:749
 #, php-format
 msgid "Order payment data mismatch: Payment: #%1$s %2$s, Order: #%3$s %4$s."
 msgstr ""
 
 #. translators: 1: Order ID
-#: includes/class-wc-gateway-maib-checkout.php:754
+#: includes/class-wc-gateway-maib-checkout.php:758
 #, php-format
 msgid "Order #%1$s already fully paid."
 msgstr ""
 
 #. translators: 1: Order ID, 2: Payment method title, 3: Payment data
-#: includes/class-wc-gateway-maib-checkout.php:773
+#: includes/class-wc-gateway-maib-checkout.php:778
 #, php-format
 msgid "Order #%1$s payment completed via %2$s: %3$s"
 msgstr ""
 
 #. translators: 1: Order ID, 2: Refund amount, 3: Payment method title
-#: includes/class-wc-gateway-maib-checkout.php:837
+#: includes/class-wc-gateway-maib-checkout.php:842
 #, php-format
 msgid "Order #%1$s refund of %2$s via %3$s approved."
 msgstr ""
 
 #. translators: 1: Order ID, 2: Refund amount, 3: Payment method title
-#: includes/class-wc-gateway-maib-checkout.php:853
+#: includes/class-wc-gateway-maib-checkout.php:858
 #, php-format
 msgid "Order #%1$s refund of %2$s via %3$s failed."
 msgstr ""
 
 #. translators: 1: Payment method title
-#: includes/class-wc-gateway-maib-checkout.php:876
+#: includes/class-wc-gateway-maib-checkout.php:881
 #, php-format
 msgid "Check %1$s order payment"
 msgstr ""
