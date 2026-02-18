@@ -411,7 +411,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         $refund_data = array(
             'amount' => $amount,
             'reason' => $reason,
-            'callbackUrl' => $this->maib_checkout_callback_url,
+            // 'callbackUrl' => $this->maib_checkout_callback_url, //TODO: Callback signature implementation fix pending from maib
         );
 
         return $client->paymentRefund($payment_id, $refund_data, $auth_token);
