@@ -523,7 +523,6 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         // https://github.com/woocommerce/woocommerce/pull/53671
         return array(
             'result'  => 'failure',
-            'message' => $message,
         );
     }
 
