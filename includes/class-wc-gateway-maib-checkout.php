@@ -619,6 +619,12 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         }
         //endregion
 
+        //region Check refund response
+        if (isset($callback_data['refundId'])) {
+            return self::return_response(\WP_Http::OK);
+        }
+        //endregion
+
         //region Validate payment status
         $callback_payment_status = strval($callback_data['paymentStatus']);
         if (strtolower($callback_payment_status) !== 'executed') {
