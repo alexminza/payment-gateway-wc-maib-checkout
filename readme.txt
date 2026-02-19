@@ -68,6 +68,11 @@ You can also contribute to the plugin by translating it. Simply visit [translate
 
 See [payment-gateway-wc-maib-checkout project releases on GitHub](https://github.com/alexminza/payment-gateway-wc-maib-checkout/releases) for details.
 
+= 1.0.3 =
+* Improved refund processing and notification handling
+* Adjusted payment failure responses for clearer behavior
+* Improved payment notification logging and test-friendly messages
+
 = 1.0.2 =
 * Updated integration with [maib e-Commerce Checkout API](https://github.com/alexminza/maib-checkout-sdk-php) - added support for the latest API changes
 * Enhanced payment notification logging for better transaction monitoring
@@ -81,6 +86,9 @@ See [payment-gateway-wc-maib-checkout project releases on GitHub](https://github
 Initial version release.
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+Improved refund notification handling and enhanced payment callback processing.
 
 = 1.0.2 =
 Updated integration with maib e-Commerce Checkout API - added support for the latest API changes.
