@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "alexminza/maib-checkout-sdk",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexminza/maib-checkout-sdk-php.git",
-                "reference": "ba6e7a8f8d06f398b5c2e6e3892423c98ba3069a"
+                "reference": "93d69fd5986ed4634c4704f4d7f773c53165e9f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexminza/maib-checkout-sdk-php/zipball/ba6e7a8f8d06f398b5c2e6e3892423c98ba3069a",
-                "reference": "ba6e7a8f8d06f398b5c2e6e3892423c98ba3069a",
+                "url": "https://api.github.com/repos/alexminza/maib-checkout-sdk-php/zipball/93d69fd5986ed4634c4704f4d7f773c53165e9f1",
+                "reference": "93d69fd5986ed4634c4704f4d7f773c53165e9f1",
                 "shasum": ""
             },
             "require": {
@@ -70,7 +70,7 @@
                 "issues": "https://github.com/alexminza/maib-checkout-sdk-php/issues",
                 "source": "https://github.com/alexminza/maib-checkout-sdk-php"
             },
-            "time": "2026-02-16T13:20:59+00:00"
+            "time": "2026-02-19T13:45:40+00:00"
         },
         {
             "name": "alexminza/wc-payment-gateway-base",

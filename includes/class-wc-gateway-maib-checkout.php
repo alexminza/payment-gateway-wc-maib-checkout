@@ -19,7 +19,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     const MOD_TEXT_DOMAIN = 'payment-gateway-wc-maib-checkout';
     const MOD_PREFIX      = 'maib_checkout_';
     const MOD_TITLE       = 'maib e-Commerce Checkout';
-    const MOD_VERSION     = '1.0.2';
+    const MOD_VERSION     = '1.0.3';
     const MOD_PLUGIN_FILE = MAIB_CHECKOUT_MOD_PLUGIN_FILE;
 
     const SUPPORTED_CURRENCIES = array('MDL');
@@ -411,7 +411,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         $refund_data = array(
             'amount' => $amount,
             'reason' => $reason,
-            'callbackUrl' => $this->maib_checkout_callback_url,
+            // 'callbackUrl' => $this->maib_checkout_callback_url, //TODO: Callback signature implementation fix pending from maib
         );
 
         return $client->paymentRefund($payment_id, $refund_data, $auth_token);
@@ -523,7 +523,6 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         // https://github.com/woocommerce/woocommerce/pull/53671
         return array(
             'result'  => 'failure',
-            'message' => $message,
         );
     }
 
@@ -573,8 +572,10 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
             }
 
             $validation_result = MaibCheckoutClient::validateCallbackSignature($callback_body, $signature_header, $signature_timestamp, $this->maib_checkout_signature_key);
+            $message = __('Payment notification callback', 'payment-gateway-wc-maib-checkout');
+            $message = $this->get_test_message($message);
             $this->log(
-                sprintf(__('Payment notification callback', 'payment-gateway-wc-maib-checkout')),
+                $message,
                 \WC_Log_Levels::INFO,
                 array(
                     'validation_result' => $validation_result,
@@ -615,6 +616,12 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
             );
 
             return self::return_response(\WP_Http::UNAUTHORIZED, 'Invalid callback signature');
+        }
+        //endregion
+
+        //region Check refund response
+        if (isset($callback_data['refundId'])) {
+            return self::return_response(\WP_Http::OK);
         }
         //endregion
 
