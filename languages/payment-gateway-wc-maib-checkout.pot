@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Payment Gateway for maib e-Commerce Checkout for WooCommerce 1.0.4\n"
+"Project-Id-Version: Payment Gateway for maib e-Commerce Checkout for WooCommerce 1.0.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/payment-gateway-wc-maib-checkout\n"
-"POT-Creation-Date: 2026-03-03 18:04+0200\n"
+"POT-Creation-Date: 2026-03-03 19:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgid "Order description that the customer will see in the app during payment."
 msgstr ""
 
 #: includes/class-wc-gateway-maib-checkout.php:141
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:103
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:106
 msgid "Connection Settings"
 msgstr ""
 
@@ -213,48 +213,48 @@ msgstr ""
 msgid "Check %1$s order payment"
 msgstr ""
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:90
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:93
 msgid "Unsupported store currency"
 msgstr ""
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:92
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:95
 msgid "Supported currencies"
 msgstr ""
 
 #. translators: 1: Payment gateway ID
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:102
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:105
 #, php-format
 msgid "See plugin documentation for <a href=\"https://wordpress.org/plugins/%1$s/#installation\" target=\"_blank\">installation instructions</a>."
 msgstr ""
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:103
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:106
 msgid "Not configured"
 msgstr ""
 
 #. translators: 1: Field label
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:123
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:126
 #, php-format
 msgid "%1$s field must be set."
 msgstr ""
 
 #. translators: 1: Payment method title, 2: Plugin settings URL
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:222
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:225
 #, php-format
 msgid "%1$s is not properly configured. Verify plugin <a href=\"%2$s\">Connection Settings</a>."
 msgstr ""
 
 #. translators: 1: Payment method title, 2: Plugin settings URL
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:229
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:232
 #, php-format
 msgid "See <a href=\"%2$s\">%1$s settings</a> page for log details and setup instructions."
 msgstr ""
 
 #. translators: 1: Original message
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:326
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:329
 #, php-format
 msgid "TEST: %1$s"
 msgstr ""
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:483
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:503
 msgid "Settings"
 msgstr ""

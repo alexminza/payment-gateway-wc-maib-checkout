@@ -3,11 +3,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Payment Gateway for maib e-Commerce Checkout for "
-"WooCommerce 1.0.4\n"
+"WooCommerce 1.0.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/payment-gateway-"
 "wc-maib-checkout\n"
-"POT-Creation-Date: 2026-03-03 18:04+0200\n"
-"PO-Revision-Date: 2026-03-03 18:05+0200\n"
+"POT-Creation-Date: 2026-03-03 19:51+0200\n"
+"PO-Revision-Date: 2026-03-03 19:52+0200\n"
 "Last-Translator: Alexander Minza <alex@alexminza.com>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -120,7 +120,7 @@ msgstr ""
 "Описание заказа, которое покупатель увидит в приложении во время оплаты."
 
 #: includes/class-wc-gateway-maib-checkout.php:141
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:103
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:106
 msgid "Connection Settings"
 msgstr "Настройки подключения"
 
@@ -238,16 +238,16 @@ msgstr "Ошибка возврата заказа #%1$s в сумме %2$s че
 msgid "Check %1$s order payment"
 msgstr "Проверить оплату заказа через %1$s"
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:90
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:93
 msgid "Unsupported store currency"
 msgstr "Валюта магазина не поддерживается"
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:92
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:95
 msgid "Supported currencies"
 msgstr "Поддерживаемые валюты"
 
 #. translators: 1: Payment gateway ID
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:102
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:105
 #, php-format
 msgid ""
 "See plugin documentation for <a href=\"https://wordpress.org/plugins/%1$s/"
@@ -257,18 +257,18 @@ msgstr ""
 "wordpress.org/plugins/%1$s/#installation\" target=\"_blank\">инструкций по "
 "установке</a>."
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:103
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:106
 msgid "Not configured"
 msgstr "Не настроено"
 
 #. translators: 1: Field label
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:123
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:126
 #, php-format
 msgid "%1$s field must be set."
 msgstr "В поле %1$s должно быть задано значение."
 
 #. translators: 1: Payment method title, 2: Plugin settings URL
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:222
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:225
 #, php-format
 msgid ""
 "%1$s is not properly configured. Verify plugin <a href=\"%2$s\">Connection "
@@ -278,7 +278,7 @@ msgstr ""
 "a> плагина."
 
 #. translators: 1: Payment method title, 2: Plugin settings URL
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:229
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:232
 #, php-format
 msgid ""
 "See <a href=\"%2$s\">%1$s settings</a> page for log details and setup "
@@ -288,11 +288,11 @@ msgstr ""
 "сведений журнала и инструкций по установке."
 
 #. translators: 1: Original message
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:326
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:329
 #, php-format
 msgid "TEST: %1$s"
 msgstr "ТЕСТ: %1$s"
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:483
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:503
 msgid "Settings"
 msgstr "Настройки"

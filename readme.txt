@@ -68,7 +68,7 @@ You can also contribute to the plugin by translating it. Simply visit [translate
 
 See [payment-gateway-wc-maib-checkout project releases on GitHub](https://github.com/alexminza/payment-gateway-wc-maib-checkout/releases) for details.
 
-= 1.0.5  =
+= 1.0.5 =
 Added list of supported languages for better payment gateway localization integration.
 
 = 1.0.4 =

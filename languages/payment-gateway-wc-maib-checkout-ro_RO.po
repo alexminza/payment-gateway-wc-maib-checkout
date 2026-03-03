@@ -3,11 +3,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Payment Gateway for maib e-Commerce Checkout for "
-"WooCommerce 1.0.4\n"
+"WooCommerce 1.0.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/payment-gateway-"
 "wc-maib-checkout\n"
-"POT-Creation-Date: 2026-03-03 18:04+0200\n"
-"PO-Revision-Date: 2026-03-03 18:04+0200\n"
+"POT-Creation-Date: 2026-03-03 19:51+0200\n"
+"PO-Revision-Date: 2026-03-03 19:52+0200\n"
 "Last-Translator: Alexander Minza <alex@alexminza.com>\n"
 "Language-Team: \n"
 "Language: ro_RO\n"
@@ -119,7 +119,7 @@ msgstr ""
 "plății."
 
 #: includes/class-wc-gateway-maib-checkout.php:141
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:103
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:106
 msgid "Connection Settings"
 msgstr "Setări conexiune"
 
@@ -236,16 +236,16 @@ msgstr "Rambursarea comenzii #%1$s în valoare de %2$s prin %3$s a eșuat."
 msgid "Check %1$s order payment"
 msgstr "Verifică plata comenzii prin %1$s"
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:90
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:93
 msgid "Unsupported store currency"
 msgstr "Valuta magazinului nu este suportată"
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:92
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:95
 msgid "Supported currencies"
 msgstr "Valute suportate"
 
 #. translators: 1: Payment gateway ID
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:102
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:105
 #, php-format
 msgid ""
 "See plugin documentation for <a href=\"https://wordpress.org/plugins/%1$s/"
@@ -254,18 +254,18 @@ msgstr ""
 "Consultați documentația modulului pentru <a href=\"https://wordpress.org/"
 "plugins/%1$s/#installation\" target=\"_blank\">instrucțiuni de instalare</a>."
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:103
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:106
 msgid "Not configured"
 msgstr "Neconfigurat"
 
 #. translators: 1: Field label
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:123
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:126
 #, php-format
 msgid "%1$s field must be set."
 msgstr "Câmpul %1$s trebuie setat."
 
 #. translators: 1: Payment method title, 2: Plugin settings URL
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:222
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:225
 #, php-format
 msgid ""
 "%1$s is not properly configured. Verify plugin <a href=\"%2$s\">Connection "
@@ -275,7 +275,7 @@ msgstr ""
 "conexiune</a>."
 
 #. translators: 1: Payment method title, 2: Plugin settings URL
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:229
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:232
 #, php-format
 msgid ""
 "See <a href=\"%2$s\">%1$s settings</a> page for log details and setup "
@@ -285,11 +285,11 @@ msgstr ""
 "jurnalului și instrucțiuni de configurare."
 
 #. translators: 1: Original message
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:326
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:329
 #, php-format
 msgid "TEST: %1$s"
 msgstr "TEST: %1$s"
 
-#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:483
+#: vendor/alexminza/wc-payment-gateway-base/src/WC_Payment_Gateway/WC_Payment_Gateway_Base.php:503
 msgid "Settings"
 msgstr "Setări"
