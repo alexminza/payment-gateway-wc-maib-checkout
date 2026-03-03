@@ -3,7 +3,7 @@ Contributors: alexminza
 Tags: Moldova, maib, e-commerce, checkout, payment gateway
 Requires at least: 4.8
 Tested up to: 6.9
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 Requires PHP: 7.2.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -49,7 +49,7 @@ The connection settings are provided by maib. This data is used by the plugin to
 
 = What store settings are supported? =
 
-maib e-Commerce Checkout currently supports transactions in MDL (Moldovan Leu).
+maib e-Commerce Checkout supports transactions in MDL (Moldovan Leu), EUR (Euro) and USD (US Dollar).
 
 = How can I contribute to the plugin? =
 
@@ -67,6 +67,9 @@ You can also contribute to the plugin by translating it. Simply visit [translate
 == Changelog ==
 
 See [payment-gateway-wc-maib-checkout project releases on GitHub](https://github.com/alexminza/payment-gateway-wc-maib-checkout/releases) for details.
+
+= 1.0.4 =
+* Added support for EUR and USD currencies
 
 = 1.0.3 =
 * Improved refund processing and notification handling
@@ -86,6 +89,9 @@ See [payment-gateway-wc-maib-checkout project releases on GitHub](https://github
 Initial version release.
 
 == Upgrade Notice ==
+
+= 1.0.4 =
+Added support for EUR and USD currencies.
 
 = 1.0.3 =
 Improved refund notification handling and enhanced payment callback processing.
