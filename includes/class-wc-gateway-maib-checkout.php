@@ -19,11 +19,11 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     const MOD_TEXT_DOMAIN = 'payment-gateway-wc-maib-checkout';
     const MOD_PREFIX      = 'maib_checkout_';
     const MOD_TITLE       = 'maib e-Commerce Checkout';
-    const MOD_VERSION     = '1.0.4';
+    const MOD_VERSION     = '1.0.5';
     const MOD_PLUGIN_FILE = MAIB_CHECKOUT_MOD_PLUGIN_FILE;
 
     const SUPPORTED_CURRENCIES = array('MDL', 'EUR', 'USD');
-    const ORDER_TEMPLATE       = 'Order #%1$s';
+    const SUPPORTED_LANGUAGES  = array('en', 'ro', 'ru');
 
     const MOD_ACTION_CHECK_PAYMENT = self::MOD_PREFIX . 'check_payment';
 
@@ -331,7 +331,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
                 'ip'        => \WC_Geolocation::get_ip_address(),
                 'userAgent' => $order->get_customer_user_agent(),
             ),
-            'language'    => substr(get_user_locale(), 0, 2),
+            'language'    => $this->get_language(),
             'callbackUrl' => $this->maib_checkout_callback_url,
             'successUrl'  => $this->get_redirect_url($order),
             'failUrl'     => $order->get_checkout_payment_url(), // $order->get_cancel_order_url()

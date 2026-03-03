@@ -3,7 +3,7 @@ Contributors: alexminza
 Tags: Moldova, maib, e-commerce, checkout, payment gateway
 Requires at least: 4.8
 Tested up to: 6.9
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 Requires PHP: 7.2.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -68,6 +68,9 @@ You can also contribute to the plugin by translating it. Simply visit [translate
 
 See [payment-gateway-wc-maib-checkout project releases on GitHub](https://github.com/alexminza/payment-gateway-wc-maib-checkout/releases) for details.
 
+= 1.0.5 =
+Added list of supported languages for better payment gateway localization integration.
+
 = 1.0.4 =
 * Added support for EUR and USD currencies
 
@@ -89,6 +92,9 @@ See [payment-gateway-wc-maib-checkout project releases on GitHub](https://github
 Initial version release.
 
 == Upgrade Notice ==
+
+= 1.0.5 =
+Added list of supported languages for better payment gateway localization integration.
 
 = 1.0.4 =
 Added support for EUR and USD currencies.
