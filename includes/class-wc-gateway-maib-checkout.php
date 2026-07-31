@@ -222,6 +222,9 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
 
     //region maib e-Commerce Checkout
     /**
+     * Initializes the maib e-Commerce Checkout API client.
+     *
+     * @return MaibCheckoutClient
      * @link https://github.com/alexminza/maib-checkout-sdk-php/blob/main/README.md#getting-started
      */
     protected function init_maib_checkout_client()
@@ -250,6 +253,12 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         return $client;
     }
 
+    /**
+     * Extracts result data from a successful maib e-Commerce Checkout API response.
+     *
+     * @param \GuzzleHttp\Command\Result|null $response API response.
+     * @return array|null Successful result data, otherwise null.
+     */
     private function maib_checkout_get_response_result(?\GuzzleHttp\Command\Result $response)
     {
         if (!empty($response)) {
@@ -264,6 +273,11 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     }
 
     /**
+     * Obtains an API access token.
+     *
+     * @param MaibCheckoutClient $client API client.
+     * @return string Access token.
+     * @throws \Exception When the API response does not contain an access token.
      * @link https://github.com/alexminza/maib-checkout-sdk-php/blob/main/README.md#get-access-token-with-client-id-and-client-secret
      * @link https://docs.maibmerchants.md/checkout/api-reference/endpoints/authentication/obtain-authentication-token
      */
@@ -281,6 +295,12 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     }
 
     /**
+     * Registers a hosted checkout session for an order.
+     *
+     * @param MaibCheckoutClient $client API client.
+     * @param string             $auth_token API access token.
+     * @param \WC_Order          $order WooCommerce order.
+     * @return \GuzzleHttp\Command\Result API response.
      * @link https://github.com/alexminza/maib-checkout-sdk-php/blob/main/README.md#register-a-new-hosted-checkout-session
      * @link https://docs.maibmerchants.md/checkout/api-reference/endpoints/register-a-new-hosted-checkout-session
      */
@@ -372,6 +392,12 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     }
 
     /**
+     * Retrieves the single executed payment for an order.
+     *
+     * @param MaibCheckoutClient $client API client.
+     * @param string             $auth_token API access token.
+     * @param string             $order_id Order identifier.
+     * @return array|null Executed payment, otherwise null.
      * @link https://docs.maibmerchants.md/checkout/api-reference/endpoints/retrieve-all-payments-by-filter
      */
     private function maib_checkout_payment(MaibCheckoutClient $client, string $auth_token, string $order_id)
@@ -406,6 +432,14 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     }
 
     /**
+     * Refunds a completed payment.
+     *
+     * @param MaibCheckoutClient $client API client.
+     * @param string             $auth_token API access token.
+     * @param string             $payment_id Payment identifier.
+     * @param float              $amount Refund amount.
+     * @param string             $reason Refund reason.
+     * @return \GuzzleHttp\Command\Result API response.
      * @link https://docs.maibmerchants.md/checkout/api-reference/endpoints/refund-a-payment
      */
     private function maib_payment_refund(MaibCheckoutClient $client, string $auth_token, string $payment_id, float $amount, string $reason)
@@ -413,7 +447,6 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
         $refund_data = array(
             'amount' => $amount,
             'reason' => $reason,
-            // 'callbackUrl' => $this->maib_checkout_callback_url, //TODO: Callback signature implementation fix pending from maib
         );
 
         return $client->paymentRefund($payment_id, $refund_data, $auth_token);
