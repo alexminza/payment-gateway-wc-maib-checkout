@@ -19,7 +19,7 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     const MOD_TEXT_DOMAIN = 'payment-gateway-wc-maib-checkout';
     const MOD_PREFIX      = 'maib_checkout_';
     const MOD_TITLE       = 'maib e-Commerce Checkout';
-    const MOD_VERSION     = '1.0.5';
+    const MOD_VERSION     = '1.0.6';
     const MOD_PLUGIN_FILE = MAIB_CHECKOUT_MOD_PLUGIN_FILE;
 
     const SUPPORTED_CURRENCIES = array('MDL', 'EUR', 'USD');
@@ -341,32 +341,34 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
     }
 
     /**
+     * Retrieves checkout details.
+     *
+     * @param MaibCheckoutClient $client API client.
+     * @param string             $auth_token API access token.
+     * @param string             $checkout_id Checkout identifier.
+     * @return array|null Checkout details, otherwise null.
      * @link https://docs.maibmerchants.md/checkout/api-reference/endpoints/get-checkout-details
      */
-    private function maib_checkout_session_active(MaibCheckoutClient $client, string $auth_token, string $checkout_id)
+    private function maib_checkout_details(MaibCheckoutClient $client, string $auth_token, string $checkout_id)
     {
         $checkout_details_response = $client->checkoutDetails($checkout_id, $auth_token);
-        $checkout_details_result = $this->maib_checkout_get_response_result($checkout_details_response);
+        return $this->maib_checkout_get_response_result($checkout_details_response);
+    }
 
-        if (!empty($checkout_details_result)) {
-            $checkout_details_status = strval($checkout_details_result['status']);
+    /**
+     * Checks whether a checkout has sufficient remaining validity.
+     *
+     * @param array $checkout_details Checkout details.
+     * @return bool Whether the checkout has sufficient remaining validity.
+     */
+    private function maib_checkout_ttl_valid(array $checkout_details)
+    {
+        $now = new \DateTime();
+        $expires_at = new \DateTime(strval($checkout_details['expiresAt']));
+        $min_validity_seconds = self::DEFAULT_VALIDITY * 60 / 2;
+        $remaining_seconds = $expires_at->getTimestamp() - $now->getTimestamp();
 
-            if (in_array(strtolower($checkout_details_status), array('waitingforinit', 'initialized', 'paymentmethodselected'), true)) {
-                $checkout_details_expires_at = strval($checkout_details_result['expiresAt']);
-
-                $now = new \DateTime();
-                $expires_at = new \DateTime($checkout_details_expires_at);
-
-                if ($expires_at > $now) {
-                    $min_validity_seconds = self::DEFAULT_VALIDITY * 60 / 2;
-                    $remaining_seconds = $expires_at->getTimestamp() - $now->getTimestamp();
-
-                    return $remaining_seconds >= $min_validity_seconds;
-                }
-            }
-        }
-
-        return false;
+        return $remaining_seconds >= $min_validity_seconds;
     }
 
     /**
@@ -436,12 +438,28 @@ class WC_Gateway_MAIB_Checkout extends WC_Payment_Gateway_Base
                 $checkout_id = strval($order->get_meta(self::MOD_CHECKOUT_ID, true));
                 $checkout_url = strval($order->get_meta(self::MOD_CHECKOUT_URL, true));
 
-                if (!empty($checkout_id) && !empty($checkout_url)) {
-                    if ($this->maib_checkout_session_active($client, $auth_token, $checkout_id)) {
-                        return array(
-                            'result'   => 'success',
-                            'redirect' => $checkout_url,
-                        );
+                if (!empty($checkout_id)) {
+                    $checkout_details = $this->maib_checkout_details($client, $auth_token, $checkout_id);
+
+                    if (!empty($checkout_details)) {
+                        $checkout_status = strtolower(strval($checkout_details['status']));
+
+                        if ('completed' === $checkout_status) {
+                            // Payment confirmation is handled by the MAIB Checkout callback or the admin check.
+                            return array(
+                                'result'   => 'success',
+                                'redirect' => $this->get_redirect_url($order),
+                            );
+                        } elseif (
+                            in_array($checkout_status, array('waitingforinit', 'initialized', 'paymentmethodselected'), true)
+                            && !empty($checkout_url)
+                            && $this->maib_checkout_ttl_valid($checkout_details)
+                        ) {
+                            return array(
+                                'result'   => 'success',
+                                'redirect' => $checkout_url,
+                            );
+                        }
                     }
                 }
             } catch (\Exception $ex) {
